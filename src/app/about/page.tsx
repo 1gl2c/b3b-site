@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import { marketingAngles } from "@/lib/data";
@@ -9,15 +10,15 @@ export default function About() {
 
       {/* HERO */}
       <section className="px-10 py-16 border-b border-[#ddd8cf]">
-        {/* Photo placeholder */}
-        <div className="bg-[#ede9e3] h-[280px] flex items-center justify-center border border-[#ddd8cf] mb-10">
-          <div className="text-center">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#c5bdb2" strokeWidth="1" className="mx-auto mb-3">
-              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-              <circle cx="12" cy="13" r="4" />
-            </svg>
-            <p className="text-[9px] tracking-[0.18em] uppercase text-[#c5bdb2]">Brand photo</p>
-          </div>
+        <div className="relative h-[380px] w-full mb-10 overflow-hidden">
+          <Image
+            src="/images/products/gym-bag-2.jpg"
+            alt="B3B — Built for the Journey"
+            fill
+            className="object-cover object-center"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/20" />
         </div>
         <div className="max-w-[560px] flex flex-col gap-4">
           <span className="text-[9px] tracking-[0.24em] uppercase text-[#8a7f72]">About B3B</span>

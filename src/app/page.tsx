@@ -79,14 +79,19 @@ export default function Home() {
       <section className="px-10 py-12 border-t border-[#ede9e3]">
         <div className="text-[10px] tracking-[0.22em] uppercase text-[#1a1a1a] mb-6">Shop by Category</div>
         <div className="grid grid-cols-6 gap-3">
-          {["Backpacks", "Belt Bags", "Cylinder Bags", "Crossbody", "Drawstring", "Caps"].map((cat) => (
-            <Link key={cat} href="/collections" className="flex flex-col items-center gap-2.5 group cursor-pointer">
-              <div className="w-16 h-16 rounded-full bg-[#ede9e3] border border-[#ddd8cf] flex items-center justify-center group-hover:bg-[#ddd8cf] transition-colors">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8a7f72" strokeWidth="1.5">
-                  <rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
-                </svg>
+          {[
+            { label: "Backpacks",     img: "/images/products/backpack-1.jpg" },
+            { label: "Belt Bags",     img: "/images/products/beltbag-1.jpg" },
+            { label: "Cylinder Bags", img: "/images/products/cylinder-1.jpg" },
+            { label: "Crossbody",     img: "/images/products/crossbody-1.jpg" },
+            { label: "Drawstring",    img: "/images/products/tote-1.jpg" },
+            { label: "Caps",          img: "/images/products/gym-bag-1.jpg" },
+          ].map((cat) => (
+            <Link key={cat.label} href="/collections" className="flex flex-col items-center gap-2.5 group cursor-pointer">
+              <div className="w-16 h-16 rounded-full overflow-hidden border border-[#ddd8cf] group-hover:border-[#8a7f72] transition-colors relative">
+                <Image src={cat.img} alt={cat.label} fill className="object-cover group-hover:scale-110 transition-transform duration-300" sizes="64px" />
               </div>
-              <span className="text-[9px] tracking-[0.14em] uppercase text-[#3a3a3a] text-center">{cat}</span>
+              <span className="text-[9px] tracking-[0.14em] uppercase text-[#3a3a3a] text-center">{cat.label}</span>
             </Link>
           ))}
         </div>
@@ -94,14 +99,14 @@ export default function Home() {
 
       {/* FOUNDER */}
       <section className="bg-[#1a1a1a] px-10 py-20 grid grid-cols-2 gap-18 items-center">
-        <div className="bg-[#161616] h-[340px] flex items-center justify-center border border-[#242424]">
-          <div className="text-center">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2a2a2a" strokeWidth="1" className="mx-auto mb-3">
-              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-              <circle cx="12" cy="13" r="4" />
-            </svg>
-            <p className="text-[9px] tracking-[0.18em] uppercase text-[#2a2a2a]">Founder photo</p>
-          </div>
+        <div className="relative h-[340px] overflow-hidden">
+          <Image
+            src="/images/products/backpack-2.jpg"
+            alt="B3B — The Foundation"
+            fill
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-black/30" />
         </div>
         <div>
           <p className="text-[9px] tracking-[0.24em] uppercase text-[#5a5a5a] mb-5">The Story Behind the Brand</p>
