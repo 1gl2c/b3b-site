@@ -27,8 +27,8 @@ export default function Nav({ dark = false }: { dark?: boolean }) {
         <Image
           src={dark ? "/images/logos/logo-white.png" : "/images/logos/logo-black.png"}
           alt="B3B"
-          width={90}
-          height={47}
+          width={120}
+          height={63}
           className="object-contain"
           priority
         />
