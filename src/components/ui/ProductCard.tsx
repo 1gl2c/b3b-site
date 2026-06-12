@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 interface Product {
   slug: string;
@@ -7,6 +8,7 @@ interface Product {
   price: number;
   badge?: string;
   remaining?: number;
+  image?: string;
 }
 
 export default function ProductCard({
@@ -18,28 +20,28 @@ export default function ProductCard({
 }) {
   return (
     <Link href={`/products/${product.slug}`} className="block group bg-white overflow-hidden cursor-pointer">
-      {/* Image placeholder */}
-      <div
-        className={`bg-[#ede9e3] flex items-center justify-center relative ${tall ? "h-[300px]" : "h-[220px]"}`}
-      >
+      <div className={`bg-[#ede9e3] relative overflow-hidden ${tall ? "h-[300px]" : "h-[220px]"}`}>
         {product.badge && (
-          <span className="absolute top-3 left-3 bg-[#1a1a1a] text-[#f5f2ee] text-[8px] tracking-[0.18em] uppercase px-2.5 py-1">
+          <span className="absolute top-3 left-3 z-10 bg-[#1a1a1a] text-[#f5f2ee] text-[8px] tracking-[0.18em] uppercase px-2.5 py-1">
             {product.badge}
           </span>
         )}
-        {/* Placeholder icon */}
-        <svg
-          width="40"
-          height="40"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="#c5bdb2"
-          strokeWidth="1"
-          className="opacity-60 group-hover:opacity-80 transition-opacity"
-        >
-          <rect x="2" y="7" width="20" height="14" rx="2" />
-          <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
-        </svg>
+        {product.image ? (
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
+        ) : (
+          <div className="flex items-center justify-center h-full">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#c5bdb2" strokeWidth="1" className="opacity-60">
+              <rect x="2" y="7" width="20" height="14" rx="2" />
+              <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+            </svg>
+          </div>
+        )}
       </div>
 
       {/* Info */}

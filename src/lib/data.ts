@@ -22,6 +22,7 @@ export const products = [
     ],
     tags: ["Full-grain leather", "Metal hardware", "Debossed logo", "Laptop sleeve", "Made in USA"],
     slug: "the-foundation",
+    image: "/images/products/backpack-1.jpg",
   },
   {
     id: "the-open-champ",
@@ -50,6 +51,7 @@ export const products = [
     ],
     tags: ["Calfskin leather", "Metal hardware", "Debossed logo", "Bottom studs", "Made in USA"],
     slug: "the-open-champ",
+    image: "/images/products/gym-bag-1.jpg",
   },
   {
     id: "the-meridian",
@@ -73,6 +75,7 @@ export const products = [
     ],
     tags: ["Full-grain leather", "Gold hardware", "Debossed logo", "Suede lining", "Made in USA"],
     slug: "the-meridian",
+    image: "/images/products/cylinder-1.jpg",
   },
   {
     id: "the-archive",
@@ -96,6 +99,7 @@ export const products = [
     ],
     tags: ["Full-grain leather", "Metal hardware", "Adjustable strap", "Made in USA"],
     slug: "the-archive",
+    image: "/images/products/beltbag-1.jpg",
   },
   {
     id: "the-traverse",
@@ -119,6 +123,7 @@ export const products = [
     ],
     tags: ["Full-grain leather", "Adjustable strap", "Metal hardware", "Made in USA"],
     slug: "the-traverse",
+    image: "/images/products/crossbody-1.jpg",
   },
   {
     id: "the-cord",
@@ -141,6 +146,7 @@ export const products = [
     ],
     tags: ["Full-grain leather", "Drawcord closure", "Made in USA"],
     slug: "the-cord",
+    image: "/images/products/tote-1.jpg",
   },
 ];
 

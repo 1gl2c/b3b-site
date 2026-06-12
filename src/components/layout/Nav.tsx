@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const links = [
@@ -22,12 +23,15 @@ export default function Nav({ dark = false }: { dark?: boolean }) {
 
   return (
     <nav className={`flex items-center justify-between px-10 py-5 sticky top-0 z-50 ${base}`}>
-      <Link
-        href="/"
-        className={`text-[22px] font-serif italic tracking-[0.02em] leading-none ${logoColor}`}
-        style={{ fontFamily: "Georgia, serif" }}
-      >
-        B3B
+      <Link href="/" className="flex items-center">
+        <Image
+          src={dark ? "/images/logos/B3B_logo_white_transparent.png" : "/images/logos/B3B_logo_black_transparent.png"}
+          alt="B3B"
+          width={72}
+          height={36}
+          className="object-contain"
+          priority
+        />
       </Link>
 
       <div className="hidden md:flex gap-8">
