@@ -25,10 +25,10 @@ export default function Nav({ dark = false }: { dark?: boolean }) {
     <nav className={`flex items-center justify-between px-10 py-5 sticky top-0 z-50 ${base}`}>
       <Link href="/" className="flex items-center">
         <Image
-          src={dark ? "/images/logos/B3B_logo_white_transparent.png" : "/images/logos/B3B_logo_black_transparent.png"}
+          src={dark ? "/images/logos/logo-white.png" : "/images/logos/logo-black.png"}
           alt="B3B"
-          width={72}
-          height={36}
+          width={90}
+          height={47}
           className="object-contain"
           priority
         />

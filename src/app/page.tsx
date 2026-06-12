@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import Marquee from "@/components/ui/Marquee";
@@ -17,12 +18,14 @@ export default function Home() {
         <span className="text-[9px] tracking-[0.3em] uppercase text-[#5a5a5a]">
           Luxury Leather Goods — Los Angeles
         </span>
-        <h1
-          className="text-[72px] italic text-[#f5f2ee] font-normal leading-none"
-          style={{ fontFamily: "Georgia, serif" }}
-        >
-          B3B
-        </h1>
+        <Image
+          src="/images/logos/logo-white.png"
+          alt="B3B"
+          width={280}
+          height={146}
+          className="object-contain"
+          priority
+        />
         <div className="w-12 h-px bg-[#3a3a3a]" />
         <p className="text-[14px] tracking-[0.3em] uppercase text-[#f5f2ee]">Built for the Journey</p>
         <div className="flex items-center gap-4 text-[10px] tracking-[0.22em] uppercase text-[#4a4a4a]">
