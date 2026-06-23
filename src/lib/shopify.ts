@@ -39,8 +39,8 @@ export async function createShopifyCheckout(lines: CartLineItem[]): Promise<stri
 export function buildFallbackCheckoutUrl(items: { shopifyVariantId?: string; quantity: number }[]): string {
   const configured = items.filter((i) => i.shopifyVariantId);
   if (configured.length === 0) {
-    return `https://${DOMAIN || "bos3bags.myshopify.com"}`;
+    return `https://${DOMAIN || "bos3bags.com"}`;
   }
   const path = configured.map((i) => `${i.shopifyVariantId}:${i.quantity}`).join(",");
-  return `https://${DOMAIN || "bos3bags.myshopify.com"}/cart/${path}`;
+  return `https://${DOMAIN || "bos3bags.com"}/cart/${path}`;
 }
