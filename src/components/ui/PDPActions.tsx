@@ -7,11 +7,12 @@ interface Props {
   price: number;
   image: string;
   remaining?: number;
+  shopifyVariantId?: string;
 }
 
-export default function PDPActions({ id, name, price, image, remaining }: Props) {
+export default function PDPActions({ id, name, price, image, remaining, shopifyVariantId }: Props) {
   const { addToCart, addToWishlist } = useCart();
-  const item = { id, name, price, image };
+  const item = { id, name, price, image, shopifyVariantId };
 
   return (
     <>

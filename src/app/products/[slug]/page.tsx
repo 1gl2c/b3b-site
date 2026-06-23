@@ -84,6 +84,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             price={product.price}
             image={images[0]}
             remaining={product.remaining}
+            shopifyVariantId={(product as any).shopifyVariantId}
           />
           <p className="text-[10px] text-[#2a2a2a] text-center mt-3 tracking-[0.08em]">
             Handcrafted · Ships in 5–7 business days
@@ -219,6 +220,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         image={images[0]}
         material={product.material}
         origin={product.origin}
+        shopifyVariantId={(product as any).shopifyVariantId}
       />
     </div>
   );

@@ -8,9 +8,10 @@ interface Props {
   image: string;
   material: string;
   origin: string;
+  shopifyVariantId?: string;
 }
 
-export default function StickyAddToBag({ id, name, price, image, material, origin }: Props) {
+export default function StickyAddToBag({ id, name, price, image, material, origin, shopifyVariantId }: Props) {
   const { addToCart } = useCart();
 
   return (
@@ -24,7 +25,7 @@ export default function StickyAddToBag({ id, name, price, image, material, origi
         </div>
       </div>
       <button
-        onClick={() => addToCart({ id, name, price, image })}
+        onClick={() => addToCart({ id, name, price, image, shopifyVariantId })}
         className="px-7 py-3 bg-[#f0ebe3] text-[#0e0e0e] text-[10px] tracking-[0.2em] uppercase hover:bg-white transition-colors"
       >
         Add to Bag — ${price.toLocaleString()}
