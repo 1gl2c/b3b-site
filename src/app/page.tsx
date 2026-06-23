@@ -88,8 +88,8 @@ export default function Home() {
             { label: "Caps",          img: "/images/products/gym-bag-1.jpg" },
           ].map((cat) => (
             <Link key={cat.label} href="/collections" className="flex flex-col items-center gap-2.5 group cursor-pointer">
-              <div className="w-16 h-16 rounded-full overflow-hidden border border-[#ddd8cf] group-hover:border-[#8a7f72] transition-colors relative">
-                <Image src={cat.img} alt={cat.label} fill className="object-cover group-hover:scale-110 transition-transform duration-300" sizes="64px" />
+              <div className="w-16 h-16 rounded-full overflow-hidden border border-[#ddd8cf] group-hover:border-[#c41e3a] group-hover:shadow-[0_0_0_3px_rgba(196,30,58,0.12)] transition-all duration-300 relative group-hover:scale-110">
+                <Image src={cat.img} alt={cat.label} fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="64px" />
               </div>
               <span className="text-[9px] tracking-[0.14em] uppercase text-[#3a3a3a] text-center">{cat.label}</span>
             </Link>
@@ -172,29 +172,29 @@ export default function Home() {
         </div>
       </section>
 
-      {/* EMAIL CAPTURE */}
-      <section className="bg-[#1a1a1a] px-10 py-18 flex flex-col items-center gap-4 text-center">
-        <span className="text-[9px] tracking-[0.26em] uppercase text-[#5a5a5a]">Private Access</span>
+      {/* EMAIL CAPTURE — parchment to break dark stacking */}
+      <section className="bg-[#f5f2ee] border-t border-[#ddd8cf] px-10 py-18 flex flex-col items-center gap-4 text-center">
+        <span className="text-[9px] tracking-[0.26em] uppercase text-[#8a7f72]">Private Access</span>
         <h2
-          className="text-[30px] italic text-[#f5f2ee] font-normal"
+          className="text-[30px] italic text-[#1a1a1a] font-normal"
           style={{ fontFamily: "Georgia, serif" }}
         >
           Be first to know.
         </h2>
-        <p className="text-[12px] text-[#5a5a5a] tracking-[0.06em]">
+        <p className="text-[12px] text-[#8a7f72] tracking-[0.06em]">
           Early access to new drops, limited releases, and founder notes from Bo.
         </p>
         <div className="flex mt-2">
           <input
             type="email"
             placeholder="Your email address"
-            className="px-5 py-3 bg-[#141414] border border-[#2a2a2a] border-r-0 text-[12px] text-[#f5f2ee] placeholder-[#3a3a3a] w-64 outline-none focus:border-[#5a5a5a]"
+            className="px-5 py-3 bg-white border border-[#ddd8cf] border-r-0 text-[12px] text-[#1a1a1a] placeholder-[#c5bdb2] w-64 outline-none focus:border-[#8a7f72]"
           />
-          <button className="px-6 py-3 bg-[#f5f2ee] text-[#1a1a1a] text-[10px] tracking-[0.18em] uppercase hover:opacity-90 transition-opacity">
+          <button className="px-6 py-3 bg-[#1a1a1a] text-[#f5f2ee] text-[10px] tracking-[0.18em] uppercase hover:opacity-90 transition-opacity">
             Join
           </button>
         </div>
-        <p className="text-[10px] text-[#3a3a3a] mt-1">No spam. One email when something matters.</p>
+        <p className="text-[10px] text-[#c5bdb2] mt-1">No spam. One email when something matters.</p>
       </section>
 
       <Footer />
