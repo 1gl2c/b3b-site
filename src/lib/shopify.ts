@@ -36,11 +36,18 @@ export async function createShopifyCheckout(lines: CartLineItem[]): Promise<stri
 }
 
 // Fallback: direct-to-store URL when Shopify API isn't configured yet
+// Shopify cart URL needs numeric variant ID, not the full GID
+function extractVariantId(gid: string): string {
+  return gid.split("/").pop() ?? gid;
+}
+
 export function buildFallbackCheckoutUrl(items: { shopifyVariantId?: string; quantity: number }[]): string {
   const configured = items.filter((i) => i.shopifyVariantId);
   if (configured.length === 0) {
     return `https://${DOMAIN || "bos3bags.com"}`;
   }
-  const path = configured.map((i) => `${i.shopifyVariantId}:${i.quantity}`).join(",");
-  return `https://${DOMAIN || "bos3bags.com"}/cart/${path}`;
+  const path = configured
+    .map((i) => `${extractVariantId(i.shopifyVariantId!)}:${i.quantity}`)
+    .join(",");
+  return `https://${DOMAIN || "bos3bags.com"}/cart/${path}?storefront=true`;
 }
