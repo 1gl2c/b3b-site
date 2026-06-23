@@ -24,6 +24,7 @@ export const products = [
     slug: "the-foundation",
     image: "/images/products/backpack-1.jpg",
     images: ["/images/products/backpack-1.jpg", "/images/products/backpack-2.jpg"],
+    shopifyVariantId: "gid://shopify/ProductVariant/51369612312878", // Flat Back Pack
   },
   {
     id: "the-open-champ",
@@ -54,6 +55,7 @@ export const products = [
     slug: "the-open-champ",
     image: "/images/products/gym-bag-1.jpg",
     images: ["/images/products/gym-bag-1.jpg", "/images/products/gym-bag-2.jpg"],
+    shopifyVariantId: "gid://shopify/ProductVariant/51369145958702", // Gym Duffle Bag
   },
   {
     id: "the-meridian",
@@ -79,6 +81,7 @@ export const products = [
     slug: "the-meridian",
     image: "/images/products/cylinder-1.jpg",
     images: ["/images/products/cylinder-1.jpg", "/images/products/cylinder-2.jpg"],
+    shopifyVariantId: "gid://shopify/ProductVariant/51369694855470", // cylinder Hand Bag
   },
   {
     id: "the-archive",
@@ -104,6 +107,7 @@ export const products = [
     slug: "the-archive",
     image: "/images/products/beltbag-1.jpg",
     images: ["/images/products/beltbag-1.jpg", "/images/products/beltbag-2.jpg"],
+    shopifyVariantId: "gid://shopify/ProductVariant/51369393226030", // Belt Bag
   },
   {
     id: "the-traverse",
@@ -129,6 +133,7 @@ export const products = [
     slug: "the-traverse",
     image: "/images/products/crossbody-1.jpg",
     images: ["/images/products/crossbody-1.jpg", "/images/products/crossbody-2.jpg"],
+    shopifyVariantId: "gid://shopify/ProductVariant/51368003895598", // Leather Cross Body Saddle Bag
   },
   {
     id: "the-cord",
@@ -153,6 +158,7 @@ export const products = [
     slug: "the-cord",
     image: "/images/products/tote-1.jpg",
     images: ["/images/products/tote-1.jpg", "/images/products/tote-2.jpg"],
+    shopifyVariantId: "gid://shopify/ProductVariant/51369521512750", // Shopping Bag (tote)
   },
 ];
 

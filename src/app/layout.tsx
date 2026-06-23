@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
+import CartDrawer from "@/components/ui/CartDrawer";
+import SearchModal from "@/components/ui/SearchModal";
+import AccountModal from "@/components/ui/AccountModal";
 
 export const metadata: Metadata = {
   title: "B3B — Bo's 3 Bags | Built for the Journey",
@@ -18,7 +21,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <CartProvider>{children}</CartProvider>
+        <CartProvider>
+          {children}
+          <CartDrawer />
+          <SearchModal />
+          <AccountModal />
+        </CartProvider>
       </body>
     </html>
   );

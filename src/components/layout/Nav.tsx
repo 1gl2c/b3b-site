@@ -13,14 +13,13 @@ const links = [
 
 export default function Nav({ dark = false }: { dark?: boolean }) {
   const pathname = usePathname();
-  const { cartCount } = useCart();
+  const { cartCount, setCartOpen, setSearchOpen, setAccountOpen } = useCart();
 
   const base = dark
     ? "bg-[#0e0e0e] border-b border-[#1e1e1e]"
     : "bg-[#f5f2ee] border-b border-[#ddd8cf]";
-
   const linkColor = dark ? "text-[#5a5a5a] hover:text-[#f0ebe3]" : "text-[#3a3a3a] hover:text-[#1a1a1a]";
-  const iconColor = dark ? "text-[#5a5a5a]" : "text-[#3a3a3a]";
+  const iconColor = dark ? "text-[#5a5a5a] hover:text-[#f0ebe3]" : "text-[#3a3a3a] hover:text-[#1a1a1a]";
 
   return (
     <nav className={`flex items-center justify-between px-10 py-4 sticky top-0 z-50 ${base}`}>
@@ -33,7 +32,6 @@ export default function Nav({ dark = false }: { dark?: boolean }) {
           className="object-contain"
           priority
         />
-        {/* Red brand accent */}
         <span className="w-1.5 h-1.5 rounded-full bg-[#c41e3a] mt-auto mb-1 flex-shrink-0" />
       </Link>
 
@@ -52,27 +50,42 @@ export default function Nav({ dark = false }: { dark?: boolean }) {
       </div>
 
       <div className="flex gap-5 items-center">
-        <button aria-label="Search" className={`${iconColor} transition-colors`}>
+        <button
+          aria-label="Search"
+          onClick={() => setSearchOpen(true)}
+          className={`${iconColor} transition-colors`}
+        >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
             <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
           </svg>
         </button>
-        <Link href="/collections" aria-label="Account" className={`${iconColor} transition-colors`}>
+
+        <button
+          aria-label="Account"
+          onClick={() => setAccountOpen(true)}
+          className={`${iconColor} transition-colors`}
+        >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
           </svg>
-        </Link>
-        <Link href="/collections" aria-label="Cart" className={`${iconColor} transition-colors relative`}>
+        </button>
+
+        <button
+          aria-label="Cart"
+          onClick={() => setCartOpen(true)}
+          className={`${iconColor} transition-colors relative`}
+        >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" /><line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
             <path d="M16 10a4 4 0 0 1-8 0" />
           </svg>
           {cartCount > 0 && (
-            <span className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-[#c41e3a] text-white text-[9px] flex items-center justify-center font-medium">
+            <span className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-[#c41e3a] text-white text-[9px] flex items-center justify-center font-medium leading-none">
               {cartCount}
             </span>
           )}
-        </Link>
+        </button>
       </div>
     </nav>
   );

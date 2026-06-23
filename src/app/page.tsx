@@ -4,6 +4,7 @@ import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import Marquee from "@/components/ui/Marquee";
 import ProductCard from "@/components/ui/ProductCard";
+import CategoryCircles from "@/components/ui/CategoryCircles";
 import { products, siteValues, reviews } from "@/lib/data";
 
 export default function Home() {
@@ -78,23 +79,7 @@ export default function Home() {
       {/* CATEGORIES */}
       <section className="px-10 py-12 border-t border-[#ede9e3]">
         <div className="text-[10px] tracking-[0.22em] uppercase text-[#1a1a1a] mb-6">Shop by Category</div>
-        <div className="grid grid-cols-6 gap-3">
-          {[
-            { label: "Backpacks",     img: "/images/products/backpack-1.jpg" },
-            { label: "Belt Bags",     img: "/images/products/beltbag-1.jpg" },
-            { label: "Cylinder Bags", img: "/images/products/cylinder-1.jpg" },
-            { label: "Crossbody",     img: "/images/products/crossbody-1.jpg" },
-            { label: "Drawstring",    img: "/images/products/tote-1.jpg" },
-            { label: "Caps",          img: "/images/products/gym-bag-1.jpg" },
-          ].map((cat) => (
-            <Link key={cat.label} href="/collections" className="flex flex-col items-center gap-2.5 group cursor-pointer">
-              <div className="w-16 h-16 rounded-full overflow-hidden border border-[#ddd8cf] group-hover:border-[#c41e3a] group-hover:shadow-[0_0_0_3px_rgba(196,30,58,0.12)] transition-all duration-300 relative group-hover:scale-110">
-                <Image src={cat.img} alt={cat.label} fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="64px" />
-              </div>
-              <span className="text-[9px] tracking-[0.14em] uppercase text-[#3a3a3a] text-center">{cat.label}</span>
-            </Link>
-          ))}
-        </div>
+        <CategoryCircles />
       </section>
 
       {/* FOUNDER */}
