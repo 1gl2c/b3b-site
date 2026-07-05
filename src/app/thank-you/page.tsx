@@ -25,8 +25,7 @@ export default function ThankYou() {
         <span className="text-[9px] tracking-[0.3em] uppercase text-[#5a5a5a] mb-5">Order Received</span>
 
         <h1
-          className="text-[42px] italic text-[#f0ebe3] font-normal leading-[1.1] mb-5 max-w-lg"
-          style={{ fontFamily: "Georgia, serif" }}
+          className="text-[42px] italic font-serif text-[#f0ebe3] font-normal leading-[1.1] mb-5 max-w-lg"
         >
           Bo begins your piece.
         </h1>
@@ -51,11 +50,12 @@ export default function ThankYou() {
         <div className="grid grid-cols-3 gap-px bg-[#1a1a1a] w-full max-w-lg mb-12">
           {[
             ["Order placed", "Stripe confirmation sent"],
+            // TODO: confirm shipping policy before launch
             ["2–3 weeks", "Build window"],
             ["Ships direct", "From Bo's studio"],
           ].map(([num, lbl]) => (
             <div key={lbl} className="bg-[#111] px-4 py-5 text-center">
-              <div className="text-[14px] italic text-[#f0ebe3] mb-1" style={{ fontFamily: "Georgia, serif" }}>
+              <div className="text-[14px] italic font-serif text-[#f0ebe3] mb-1">
                 {num}
               </div>
               <div className="text-[9px] tracking-[0.14em] uppercase text-[#3a3a3a]">{lbl}</div>

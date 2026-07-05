@@ -70,7 +70,7 @@ export default function SearchModal() {
                     <Image src={p.image} alt={p.name} fill className="object-cover" sizes="48px" />
                   </div>
                   <div>
-                    <div className="text-[13px] italic text-[#1a1a1a]" style={{ fontFamily: "Georgia, serif" }}>{p.name}</div>
+                    <div className="text-[13px] italic text-[#1a1a1a] font-serif">{p.name}</div>
                     <div className="text-[10px] tracking-[0.12em] uppercase text-[#8a7f72]">
                       {p.category} · {p.price != null ? `$${p.price.toLocaleString()}` : "Pricing soon"}
                     </div>

@@ -22,7 +22,7 @@ export default function PurchaseButton({ productName, stripePaymentLink }: Props
         href={stripePaymentLink}
         target="_blank"
         rel="noopener noreferrer"
-        className="w-full py-4 bg-[#f0ebe3] text-[#0e0e0e] text-[11px] tracking-[0.22em] uppercase text-center block hover:bg-white transition-colors"
+        className="w-full py-4 bg-[#0a0a0a] text-white text-[11px] tracking-[0.22em] uppercase text-center block rounded-full transition-colors duration-200 hover:bg-[#c41e1e]"
       >
         Purchase
       </a>
@@ -31,9 +31,9 @@ export default function PurchaseButton({ productName, stripePaymentLink }: Props
 
   if (submitted) {
     return (
-      <div className="w-full py-4 bg-[#1a1a1a] border border-[#2a2a2a] text-center">
+      <div className="w-full py-4 bg-[#F8F6F2] border border-[#e8e4de] text-center rounded-full">
         <p className="text-[11px] tracking-[0.16em] uppercase text-[#8a7f72]">
-          Reserved — we'll reach out when pricing is set.
+          Reserved — we&apos;ll reach out when pricing is set.
         </p>
       </div>
     );
@@ -41,9 +41,9 @@ export default function PurchaseButton({ productName, stripePaymentLink }: Props
 
   if (showForm) {
     return (
-      <div className="w-full border border-[#2a2a2a] p-4">
+      <div className="w-full border border-[#e8e4de] rounded-2xl p-4 bg-white">
         <p className="text-[10px] tracking-[0.16em] uppercase text-[#5a5a5a] mb-3">
-          Reserve your spot — we'll notify you when pricing is confirmed.
+          Reserve your spot — we&apos;ll notify you when pricing is confirmed.
         </p>
         <form
           onSubmit={async (e) => {
@@ -68,12 +68,12 @@ export default function PurchaseButton({ productName, stripePaymentLink }: Props
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="your@email.com"
-            className="flex-1 bg-transparent border border-[#2a2a2a] px-3 py-2.5 text-[11px] text-[#f0ebe3] placeholder-[#3a3a3a] outline-none focus:border-[#5a5a5a]"
+            className="flex-1 bg-[#F8F6F2] border border-[#e8e4de] px-3 py-2.5 text-[11px] text-[#0a0a0a] placeholder-[#c5bdb2] outline-none focus:border-[#0a0a0a] rounded-lg"
           />
           <button
             type="submit"
             disabled={loading}
-            className="px-5 py-2.5 bg-[#f0ebe3] text-[#0e0e0e] text-[10px] tracking-[0.18em] uppercase hover:bg-white transition-colors disabled:opacity-50"
+            className="px-5 py-2.5 bg-[#0a0a0a] text-white text-[10px] tracking-[0.18em] uppercase rounded-full transition-colors duration-200 hover:bg-[#c41e1e] disabled:opacity-50"
           >
             {loading ? "..." : "Notify Me"}
           </button>
@@ -85,7 +85,7 @@ export default function PurchaseButton({ productName, stripePaymentLink }: Props
   return (
     <button
       onClick={() => setShowForm(true)}
-      className="w-full py-4 bg-transparent text-[#f0ebe3] text-[11px] tracking-[0.22em] uppercase border border-[#2a2a2a] hover:border-[#5a5a5a] transition-colors"
+      className="w-full py-4 bg-[#0a0a0a] text-white text-[11px] tracking-[0.22em] uppercase rounded-full transition-colors duration-200 hover:bg-[#c41e1e]"
     >
       Reserve — pricing soon
     </button>

@@ -20,10 +20,13 @@
 html { scroll-behavior: smooth; }
 
 body {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
   background-color: var(--parchment);
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
 }
+
+.font-serif { font-family: var(--font-serif), Georgia, serif; }
 
 @keyframes marquee {
   from { transform: translateX(0); }
@@ -61,4 +64,41 @@ body {
 @keyframes slide-in-right {
   from { transform: translateX(100%); }
   to   { transform: translateX(0); }
+}
+
+/* Ken Burns hero */
+@keyframes ken-burns {
+  0%   { transform: scale(1.0) translate(0, 0); }
+  100% { transform: scale(1.12) translate(-2%, -2%); }
+}
+.animate-ken-burns {
+  animation: ken-burns 18s ease-in-out infinite alternate;
+}
+
+/* Word pull-up */
+@keyframes pull-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Fade-up */
+.fade-up {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Char reveal spans */
+.char-hidden {
+  opacity: 0;
+  display: inline-block;
+}
+.char-visible {
+  opacity: 1;
+  display: inline-block;
+  transition: opacity 0.3s ease;
 }

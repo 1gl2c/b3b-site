@@ -23,8 +23,7 @@ export default function About() {
         <div className="max-w-[560px] flex flex-col gap-4">
           <span className="text-[9px] tracking-[0.24em] uppercase text-[#8a7f72]">About B3B</span>
           <h1
-            className="text-[40px] italic text-[#1a1a1a] font-normal leading-[1.1]"
-            style={{ fontFamily: "Georgia, serif" }}
+            className="text-[40px] italic text-[#1a1a1a] font-normal leading-[1.1] font-serif"
           >
             Luxury leather redefined through legacy.
           </h1>
@@ -51,8 +50,7 @@ export default function About() {
             <div key={angle.title} className="bg-[#f5f2ee] px-7 py-8">
               <div className="text-[12px] tracking-[0.14em] uppercase text-[#1a1a1a] mb-3">{angle.title}</div>
               <blockquote
-                className="text-[13px] italic text-[#3a3a3a] leading-[1.6] mb-3"
-                style={{ fontFamily: "Georgia, serif" }}
+                className="text-[13px] italic text-[#3a3a3a] leading-[1.6] mb-3 font-serif"
               >
                 &ldquo;{angle.quote}&rdquo;
               </blockquote>
@@ -66,8 +64,7 @@ export default function About() {
       <section className="bg-[#1a1a1a] px-10 py-18 flex flex-col items-center gap-4 text-center border-t border-[#ddd8cf]">
         <span className="text-[9px] tracking-[0.26em] uppercase text-[#5a5a5a]">Join the Journey</span>
         <h2
-          className="text-[28px] italic text-[#f5f2ee] font-normal"
-          style={{ fontFamily: "Georgia, serif" }}
+          className="text-[28px] italic text-[#f5f2ee] font-normal font-serif"
         >
           B3B | Leather built to move through time.
         </h2>

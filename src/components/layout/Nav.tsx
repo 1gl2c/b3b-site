@@ -13,11 +13,11 @@ const links = [
 
 export default function Nav({ dark = false }: { dark?: boolean }) {
   const pathname = usePathname();
-  const { cartCount, setCartOpen, setSearchOpen, setAccountOpen } = useCart();
+  const { setSearchOpen, setAccountOpen } = useCart();
 
   const base = dark
     ? "bg-[#0e0e0e] border-b border-[#1e1e1e]"
-    : "bg-[#f5f2ee] border-b border-[#ddd8cf]";
+    : "bg-[#F8F6F2] border-b border-[#ddd8cf]";
   const linkColor = dark ? "text-[#5a5a5a] hover:text-[#f0ebe3]" : "text-[#3a3a3a] hover:text-[#1a1a1a]";
   const iconColor = dark ? "text-[#5a5a5a] hover:text-[#f0ebe3]" : "text-[#3a3a3a] hover:text-[#1a1a1a]";
 
@@ -68,23 +68,6 @@ export default function Nav({ dark = false }: { dark?: boolean }) {
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
           </svg>
-        </button>
-
-        <button
-          aria-label="Cart"
-          onClick={() => setCartOpen(true)}
-          className={`${iconColor} transition-colors relative`}
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <path d="M16 10a4 4 0 0 1-8 0" />
-          </svg>
-          {cartCount > 0 && (
-            <span className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-[#c41e3a] text-white text-[9px] flex items-center justify-center font-medium leading-none">
-              {cartCount}
-            </span>
-          )}
         </button>
       </div>
     </nav>

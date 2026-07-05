@@ -4,12 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 
 const categories = [
-  { label: "Backpacks",     img: "/images/products/backpack-1.jpg" },
-  { label: "Belt Bags",     img: "/images/products/beltbag-1.jpg" },
-  { label: "Cylinder Bags", img: "/images/products/cylinder-1.jpg" },
-  { label: "Crossbody",     img: "/images/products/crossbody-1.jpg" },
-  { label: "Drawstring",    img: "/images/products/tote-1.jpg" },
-  { label: "Caps",          img: "/images/products/gym-bag-1.jpg" },
+  { label: "Backpacks",     img: "/products/flat-backpack.jpg",      href: "/collections?category=Backpack" },
+  { label: "Belt Bags",     img: "/products/belt-bag.jpg",           href: "/collections?category=Belt+Bag" },
+  { label: "Cylinder Bags", img: "/products/cylinder-hand-bag.jpg",  href: "/collections?category=Handbag" },
+  { label: "Crossbody",     img: "/products/crossbody-saddle.jpg",   href: "/collections?category=Crossbody" },
+  { label: "Drawstring",    img: "/products/drawcord-backpack.jpg",  href: "/collections?category=Backpack" },
+  { label: "Caps",          img: "/products/cap.jpg",                href: "/collections?category=Accessory" },
 ];
 
 function Circle({ cat, index }: { cat: typeof categories[0]; index: number }) {
@@ -46,7 +46,7 @@ function Circle({ cat, index }: { cat: typeof categories[0]; index: number }) {
 
   return (
     <Link
-      href="/collections"
+      href={cat.href}
       className="flex flex-col items-center gap-2.5 group cursor-pointer"
       style={{ animationDelay: `${index * 0.4}s` }}
     >

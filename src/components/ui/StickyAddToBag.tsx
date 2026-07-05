@@ -10,13 +10,14 @@ interface Props {
 
 export default function StickyAddToBag({ name, price, category, stripePaymentLink }: Props) {
   return (
-    <div className="sticky bottom-0 bg-[#0e0e0e] border-t border-[#1e1e1e] px-10 py-3.5 flex items-center justify-between z-40">
+    <div className="sticky bottom-0 bg-white border-t border-[#e8e4de] px-10 py-3.5 flex items-center justify-between z-40">
       <div>
-        <div className="text-[13px] italic text-[#f0ebe3]" style={{ fontFamily: "Georgia, serif" }}>
+        <div className="text-[13px] italic font-serif text-[#0a0a0a]">
           {name}
         </div>
-        <div className="text-[10px] text-[#3a3a3a] tracking-[0.1em] mt-0.5">
-          {category} · {price != null ? `$${price.toLocaleString()}` : "Pricing soon"}
+        <div className="text-[10px] text-[#8a7f72] tracking-[0.1em] mt-0.5">
+          {/* TODO: confirm shipping policy before launch */}
+          {category} · {price != null ? `$${price.toLocaleString()}` : "Pricing soon"} · Ships in 2–3 weeks
         </div>
       </div>
       <div className="w-52">

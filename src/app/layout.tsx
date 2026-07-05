@@ -1,9 +1,18 @@
 import type { Metadata } from "next";
+import { Instrument_Serif } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import CartDrawer from "@/components/ui/CartDrawer";
 import SearchModal from "@/components/ui/SearchModal";
 import AccountModal from "@/components/ui/AccountModal";
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+});
 
 export const metadata: Metadata = {
   title: "B3B — Bo's 3 Bags | Built for the Journey",
@@ -20,7 +29,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${GeistSans.variable} ${instrumentSerif.variable}`}>
         <CartProvider>
           {children}
           <CartDrawer />
