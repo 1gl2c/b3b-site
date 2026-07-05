@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
-import { products } from "@/lib/data";
+import { products } from "@/data/products";
 
 export default function SearchModal() {
   const { searchOpen, setSearchOpen } = useCart();
@@ -14,7 +14,7 @@ export default function SearchModal() {
     ? products.filter((p) =>
         p.name.toLowerCase().includes(query.toLowerCase()) ||
         p.category.toLowerCase().includes(query.toLowerCase()) ||
-        p.material.toLowerCase().includes(query.toLowerCase())
+        p.description.toLowerCase().includes(query.toLowerCase())
       )
     : [];
 
@@ -57,21 +57,23 @@ export default function SearchModal() {
         {query.trim().length > 1 && (
           <div className="max-h-[400px] overflow-y-auto">
             {results.length === 0 ? (
-              <div className="px-6 py-8 text-center text-[12px] text-[#8a7f72]">No results for "{query}"</div>
+              <div className="px-6 py-8 text-center text-[12px] text-[#8a7f72]">No results for &ldquo;{query}&rdquo;</div>
             ) : (
               results.map((p) => (
                 <Link
-                  key={p.id}
+                  key={p.slug}
                   href={`/products/${p.slug}`}
                   onClick={() => setSearchOpen(false)}
                   className="flex items-center gap-4 px-6 py-4 hover:bg-[#ede9e3] transition-colors border-b border-[#ede9e3] last:border-b-0"
                 >
                   <div className="relative w-12 h-12 flex-shrink-0 bg-[#ede9e3] overflow-hidden">
-                    {p.image && <Image src={p.image} alt={p.name} fill className="object-cover" sizes="48px" />}
+                    <Image src={p.image} alt={p.name} fill className="object-cover" sizes="48px" />
                   </div>
                   <div>
                     <div className="text-[13px] italic text-[#1a1a1a]" style={{ fontFamily: "Georgia, serif" }}>{p.name}</div>
-                    <div className="text-[10px] tracking-[0.12em] uppercase text-[#8a7f72]">{p.category} · ${p.price.toLocaleString()}</div>
+                    <div className="text-[10px] tracking-[0.12em] uppercase text-[#8a7f72]">
+                      {p.category} · {p.price != null ? `$${p.price.toLocaleString()}` : "Pricing soon"}
+                    </div>
                   </div>
                 </Link>
               ))
@@ -83,7 +85,7 @@ export default function SearchModal() {
           <div className="px-6 py-5">
             <div className="text-[9px] tracking-[0.2em] uppercase text-[#c5bdb2] mb-3">All Categories</div>
             <div className="flex flex-wrap gap-2">
-              {["Backpack", "Gym Bag", "Belt Bag", "Cylinder Handbag", "Crossbody", "Drawstring"].map((cat) => (
+              {["Backpack", "Belt Bag", "Crossbody", "Duffle", "Handbag", "Sling", "Tote", "Accessory"].map((cat) => (
                 <Link
                   key={cat}
                   href="/collections"

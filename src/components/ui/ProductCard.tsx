@@ -1,56 +1,32 @@
 import Link from "next/link";
 import Image from "next/image";
-
-interface Product {
-  slug: string;
-  name: string;
-  category: string;
-  price: number;
-  badge?: string;
-  remaining?: number;
-  image?: string;
-  images?: string[];
-}
+import type { Product } from "@/data/products";
 
 export default function ProductCard({ product, tall = false }: { product: Product; tall?: boolean }) {
-  const primary = product.image ?? product.images?.[0];
-  const secondary = product.images?.[1];
+  const secondary = product.images[1];
 
   return (
     <Link href={`/products/${product.slug}`} className="block group bg-white overflow-hidden cursor-pointer">
       <div className={`relative overflow-hidden ${tall ? "h-[340px]" : "h-[240px]"}`}>
-        {product.badge && (
-          <span className="absolute top-3 left-3 z-10 bg-[#1a1a1a] text-[#f5f2ee] text-[8px] tracking-[0.18em] uppercase px-2.5 py-1">
-            {product.badge}
-          </span>
-        )}
+        <span className="absolute top-3 left-3 z-10 bg-[#1a1a1a] text-[#f5f2ee] text-[8px] tracking-[0.18em] uppercase px-2.5 py-1">
+          Made to Order
+        </span>
 
-        {primary ? (
-          <>
-            <Image
-              src={primary}
-              alt={product.name}
-              fill
-              className={`object-cover transition-opacity duration-500 ${secondary ? "group-hover:opacity-0" : "group-hover:scale-105"}`}
-              sizes="(max-width: 768px) 100vw, 33vw"
-            />
-            {secondary && (
-              <Image
-                src={secondary}
-                alt={`${product.name} alternate`}
-                fill
-                className="object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                sizes="(max-width: 768px) 100vw, 33vw"
-              />
-            )}
-          </>
-        ) : (
-          <div className="flex items-center justify-center h-full bg-[#ede9e3]">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#c5bdb2" strokeWidth="1">
-              <rect x="2" y="7" width="20" height="14" rx="2" />
-              <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
-            </svg>
-          </div>
+        <Image
+          src={product.image}
+          alt={product.name}
+          fill
+          className={`object-cover transition-opacity duration-500 ${secondary ? "group-hover:opacity-0" : "group-hover:scale-105"}`}
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+        />
+        {secondary && (
+          <Image
+            src={secondary}
+            alt={`${product.name} alternate`}
+            fill
+            className="object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+          />
         )}
       </div>
 
@@ -61,13 +37,11 @@ export default function ProductCard({ product, tall = false }: { product: Produc
         </div>
         <div className="flex items-center justify-between">
           <span className="text-[13px] text-[#1a1a1a]" style={{ fontFamily: "Georgia, serif" }}>
-            ${product.price.toLocaleString()}
+            {product.price != null ? `$${product.price.toLocaleString()}` : "Pricing soon"}
           </span>
-          {product.remaining && product.remaining <= 8 && (
-            <span className="text-[9px] tracking-[0.12em] uppercase text-[#c41e3a]">
-              {product.remaining} remaining
-            </span>
-          )}
+          <span className="text-[9px] tracking-[0.12em] uppercase text-[#8a7f72]">
+            2–3 wk lead
+          </span>
         </div>
       </div>
     </Link>

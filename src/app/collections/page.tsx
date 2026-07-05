@@ -3,9 +3,9 @@ import { useState } from "react";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import ProductCard from "@/components/ui/ProductCard";
-import { products } from "@/lib/data";
+import { products } from "@/data/products";
 
-const categories = ["All", "Backpack", "Gym Bag", "Cylinder Handbag", "Belt Bag", "Crossbody", "Drawstring"];
+const categories = ["All", "Backpack", "Belt Bag", "Crossbody", "Duffle", "Handbag", "Sling", "Tote", "Accessory"];
 
 export default function Collections() {
   const [active, setActive] = useState("All");
@@ -18,7 +18,6 @@ export default function Collections() {
     <div className="bg-[#f5f2ee]">
       <Nav />
 
-      {/* Header */}
       <div className="px-10 pt-14 pb-10 border-b border-[#ddd8cf]">
         <span className="text-[9px] tracking-[0.24em] uppercase text-[#8a7f72]">The Collection</span>
         <h1
@@ -44,10 +43,9 @@ export default function Collections() {
         </div>
       </div>
 
-      {/* Grid — leading with $1,100 backpack for price anchoring */}
       <div className="grid grid-cols-3 gap-[2px] bg-[#ede9e3] p-[2px]">
         {filtered.map((p) => (
-          <ProductCard key={p.id} product={p} />
+          <ProductCard key={p.slug} product={p} />
         ))}
       </div>
 

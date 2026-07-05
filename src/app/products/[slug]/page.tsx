@@ -5,7 +5,7 @@ import Nav from "@/components/layout/Nav";
 import PDPGallery from "@/components/ui/PDPGallery";
 import PDPActions from "@/components/ui/PDPActions";
 import StickyAddToBag from "@/components/ui/StickyAddToBag";
-import { products } from "@/lib/data";
+import { products } from "@/data/products";
 
 export async function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -17,7 +17,6 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   if (!product) notFound();
 
   const related = products.filter((p) => p.slug !== slug).slice(0, 3);
-  const images = (product as any).images ?? [product.image];
 
   return (
     <div className="bg-[#0e0e0e] text-[#f0ebe3]">
@@ -34,11 +33,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
       {/* HERO SPLIT */}
       <div className="grid grid-cols-2 min-h-[500px]">
-        <PDPGallery images={images} name={product.name} />
+        <PDPGallery images={product.images} name={product.name} />
 
         <div className="px-11 py-11 flex flex-col">
           <div className="flex items-center gap-2.5 mb-3.5">
-            {["B3B", product.category, "Limited"].map((item, i) => (
+            {["B3B", product.category, "Made to Order"].map((item, i) => (
               <span key={item} className="flex items-center gap-2.5">
                 {i > 0 && <span className="w-[3px] h-[3px] bg-[#2a2a2a] rounded-full" />}
                 <span className="text-[9px] tracking-[0.22em] uppercase text-[#5a5a5a]">{item}</span>
@@ -53,41 +52,35 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             {product.name}
           </h1>
           <p className="text-[10px] tracking-[0.18em] uppercase text-[#3a3a3a] mb-7">
-            {product.material} · {product.origin} · One Size
+            Full-grain leather · Made in USA · One Size
           </p>
 
           <div className="flex items-baseline gap-4 pb-6 border-b border-[#1e1e1e] mb-6">
-            <span className="text-[30px] text-[#f0ebe3]" style={{ fontFamily: "Georgia, serif" }}>
-              ${product.price.toLocaleString()}
-            </span>
+            {product.price != null ? (
+              <span className="text-[30px] text-[#f0ebe3]" style={{ fontFamily: "Georgia, serif" }}>
+                ${product.price.toLocaleString()}
+              </span>
+            ) : (
+              <span className="text-[14px] tracking-[0.12em] uppercase text-[#5a5a5a]">
+                Pricing soon
+              </span>
+            )}
             <span className="text-[9px] tracking-[0.14em] uppercase text-[#3a3a3a]">
               Free shipping · Worldwide
             </span>
           </div>
 
-          <p className="text-[13px] text-[#5a5a5a] leading-[1.9] mb-6">{product.description}</p>
-
-          <div className="flex flex-wrap gap-1.5 mb-7">
-            {product.tags.map((tag) => (
-              <span
-                key={tag}
-                className="text-[9px] tracking-[0.14em] uppercase px-2.5 py-1.5 border border-[#2a2a2a] text-[#3a3a3a]"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+          <p className="text-[13px] text-[#5a5a5a] leading-[1.9] mb-7">{product.description}</p>
 
           <PDPActions
-            id={product.id}
+            slug={product.slug}
             name={product.name}
             price={product.price}
-            image={images[0]}
-            remaining={product.remaining}
-            shopifyVariantId={(product as any).shopifyVariantId}
+            image={product.image}
+            stripePaymentLink={product.stripePaymentLink}
           />
           <p className="text-[10px] text-[#2a2a2a] text-center mt-3 tracking-[0.08em]">
-            Handcrafted · Ships in 5–7 business days
+            Handcrafted by Bo · Ships in 2–3 weeks
           </p>
         </div>
       </div>
@@ -114,11 +107,10 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         </div>
         <div className="px-11 py-14">
           <span className="text-[9px] tracking-[0.26em] uppercase text-[#5a5a5a] block mb-6">Specifications</span>
-          {product.specs.map((s) => (
-            <div key={s.key} className="flex justify-between items-baseline py-3 border-b border-[#161616] last:border-b-0">
-              <span className="text-[10px] tracking-[0.12em] uppercase text-[#3a3a3a]">{s.key}</span>
+          {product.specs.map((spec) => (
+            <div key={spec} className="flex items-baseline py-3 border-b border-[#161616] last:border-b-0">
               <span className="text-[12px] italic text-[#5a5a5a]" style={{ fontFamily: "Georgia, serif" }}>
-                {s.val}
+                {spec}
               </span>
             </div>
           ))}
@@ -157,9 +149,6 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             building other people&apos;s brands — working with icons across the fashion world,
             shaping silhouettes for world-renowned houses — he finally had something to say under
             his own name.
-            <br /><br />
-            The Open Champ is named for the very first bag he ever made. A gym bag. It carried his
-            ambition then. This one carries his legacy now.
           </p>
         </div>
         <div className="px-11 py-16 flex flex-col justify-center gap-7">
@@ -181,46 +170,34 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           </Link>
         </div>
         <div className="grid grid-cols-3 gap-px bg-[#1a1a1a]">
-          {related.map((p) => {
-            const relImg = (p as any).image;
-            return (
-              <Link key={p.id} href={`/products/${p.slug}`} className="bg-[#111] group">
-                <div className="h-[200px] relative overflow-hidden border-b border-[#1a1a1a]">
-                  {relImg ? (
-                    <Image
-                      src={relImg}
-                      alt={p.name}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      sizes="33vw"
-                    />
-                  ) : (
-                    <div className="flex items-center justify-center h-full">
-                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2a2a2a" strokeWidth="1.5">
-                        <rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
-                      </svg>
-                    </div>
-                  )}
+          {related.map((p) => (
+            <Link key={p.slug} href={`/products/${p.slug}`} className="bg-[#111] group">
+              <div className="h-[200px] relative overflow-hidden border-b border-[#1a1a1a]">
+                <Image
+                  src={p.image}
+                  alt={p.name}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="33vw"
+                />
+              </div>
+              <div className="px-4 py-4">
+                <div className="text-[9px] tracking-[0.14em] uppercase text-[#3a3a3a] mb-1">{p.category}</div>
+                <div className="text-[14px] italic text-[#f0ebe3] mb-1" style={{ fontFamily: "Georgia, serif" }}>{p.name}</div>
+                <div className="text-[11px] text-[#3a3a3a]" style={{ fontFamily: "Georgia, serif" }}>
+                  {p.price != null ? `$${p.price.toLocaleString()}` : "Pricing soon"}
                 </div>
-                <div className="px-4 py-4">
-                  <div className="text-[9px] tracking-[0.14em] uppercase text-[#3a3a3a] mb-1">{p.category}</div>
-                  <div className="text-[14px] italic text-[#f0ebe3] mb-1" style={{ fontFamily: "Georgia, serif" }}>{p.name}</div>
-                  <div className="text-[11px] text-[#3a3a3a]" style={{ fontFamily: "Georgia, serif" }}>${p.price.toLocaleString()}</div>
-                </div>
-              </Link>
-            );
-          })}
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
 
       <StickyAddToBag
-        id={product.id}
         name={product.name}
         price={product.price}
-        image={images[0]}
-        material={product.material}
-        origin={product.origin}
-        shopifyVariantId={(product as any).shopifyVariantId}
+        category={product.category}
+        stripePaymentLink={product.stripePaymentLink}
       />
     </div>
   );

@@ -1,19 +1,14 @@
 "use client";
-import { useCart } from "@/context/CartContext";
+import PurchaseButton from "@/components/ui/PurchaseButton";
 
 interface Props {
-  id: string;
   name: string;
-  price: number;
-  image: string;
-  material: string;
-  origin: string;
-  shopifyVariantId?: string;
+  price: number | null;
+  category: string;
+  stripePaymentLink: string | null;
 }
 
-export default function StickyAddToBag({ id, name, price, image, material, origin, shopifyVariantId }: Props) {
-  const { addToCart } = useCart();
-
+export default function StickyAddToBag({ name, price, category, stripePaymentLink }: Props) {
   return (
     <div className="sticky bottom-0 bg-[#0e0e0e] border-t border-[#1e1e1e] px-10 py-3.5 flex items-center justify-between z-40">
       <div>
@@ -21,15 +16,12 @@ export default function StickyAddToBag({ id, name, price, image, material, origi
           {name}
         </div>
         <div className="text-[10px] text-[#3a3a3a] tracking-[0.1em] mt-0.5">
-          {material} · {origin}
+          {category} · {price != null ? `$${price.toLocaleString()}` : "Pricing soon"}
         </div>
       </div>
-      <button
-        onClick={() => addToCart({ id, name, price, image, shopifyVariantId })}
-        className="px-7 py-3 bg-[#f0ebe3] text-[#0e0e0e] text-[10px] tracking-[0.2em] uppercase hover:bg-white transition-colors"
-      >
-        Add to Bag — ${price.toLocaleString()}
-      </button>
+      <div className="w-52">
+        <PurchaseButton productName={name} stripePaymentLink={stripePaymentLink} />
+      </div>
     </div>
   );
 }

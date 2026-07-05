@@ -5,7 +5,8 @@ import Footer from "@/components/layout/Footer";
 import Marquee from "@/components/ui/Marquee";
 import ProductCard from "@/components/ui/ProductCard";
 import CategoryCircles from "@/components/ui/CategoryCircles";
-import { products, siteValues, reviews } from "@/lib/data";
+import { products } from "@/data/products";
+import { siteValues, reviews } from "@/lib/data";
 
 export default function Home() {
   const featured = products.slice(0, 4);
@@ -86,8 +87,8 @@ export default function Home() {
       <section className="bg-[#1a1a1a] px-10 py-20 grid grid-cols-2 gap-18 items-center">
         <div className="relative h-[340px] overflow-hidden">
           <Image
-            src="/images/products/backpack-2.jpg"
-            alt="B3B — The Foundation"
+            src="/products/flat-backpack.jpg"
+            alt="B3B — Flat Back Pack"
             fill
             className="object-cover object-center"
           />
