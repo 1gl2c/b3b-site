@@ -8,6 +8,7 @@ import CategoryCircles from "@/components/ui/CategoryCircles";
 import CharReveal from "@/components/ui/CharReveal";
 import PullUp from "@/components/ui/PullUp";
 import FadeUp from "@/components/ui/FadeUp";
+import VideoLoop from "@/components/ui/VideoLoop";
 import { products } from "@/data/products";
 import { siteValues, reviews } from "@/lib/data";
 
@@ -18,17 +19,12 @@ export default function Home() {
     <div className="bg-[#0e0e0e]">
       <Nav dark />
 
-      {/* ─── HERO: Ken Burns ─── */}
+      {/* ─── HERO: Video loop ─── */}
       <section className="relative h-screen min-h-[600px] overflow-hidden flex flex-col items-center justify-center text-center">
-        {/* Ken Burns background image */}
         <div className="absolute inset-0 overflow-hidden">
-          <Image
-            src="/products/flat-backpack.jpg"
-            alt="B3B Flat Back Pack"
-            fill
-            priority
-            className="object-cover object-center animate-ken-burns"
-            sizes="100vw"
+          <VideoLoop
+            src="/videos/hero-loop.mp4"
+            poster="/products/flat-backpack.jpg"
           />
         </div>
 
@@ -84,11 +80,9 @@ export default function Home() {
       {/* ─── BRAND STORY: dark ─── */}
       <section className="bg-[#0e0e0e] px-10 py-20 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         <div className="relative h-[340px] overflow-hidden">
-          <Image
-            src="/products/flat-backpack.jpg"
-            alt="B3B — Flat Back Pack"
-            fill
-            className="object-cover object-center"
+          <VideoLoop
+            src="/videos/brand-loop.mp4"
+            poster="/products/sling-bag.jpg"
           />
           <div className="absolute inset-0 bg-black/30" />
         </div>

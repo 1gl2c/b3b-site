@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# raw source media (processed outputs live in public/)
+/new-media/
+/*.jpeg
+/*.jpg
+/*.MOV
+/B3B_migration_handoff.md
+/.claude/

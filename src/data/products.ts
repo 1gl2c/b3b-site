@@ -12,6 +12,57 @@ export interface Product {
 }
 
 export const products: Product[] = [
+  // ─── Expected best sellers first ───────────────────────────────────────────
+  {
+    // TODO: front + side angles coming in next shoot
+    slug: "black-leather-backpack",
+    name: "Black Leather Backpack",
+    category: "Backpack",
+    price: null,
+    stripePaymentLink: null,
+    image: "/products/black-leather-backpack.jpg",
+    images: [
+      "/products/black-leather-backpack.jpg",
+      "/products/black-leather-backpack-2.jpg",
+    ],
+    description:
+      "Full-grain black leather backpack with padded shoulder straps and a carry handle — built for daily use and built to last. Crafted by Bo with the same precision as every piece in the collection.",
+    specs: [
+      "Full-grain leather shell",
+      "Padded leather shoulder straps",
+      "Top carry handle",
+      "Solid metal hardware",
+      "Debossed B3B logo",
+      "Made in USA, imported hides",
+    ],
+    status: "made-to-order",
+  },
+  {
+    slug: "gym-duffle-bag",
+    name: "Gym Duffle Bag",
+    category: "Duffle",
+    price: null,
+    stripePaymentLink: null,
+    image: "/products/gym-duffle.jpg",
+    images: ["/products/gym-duffle.jpg"],
+    description:
+      "Leather bag with drawcord closure, adjustable leather logo-webbing strap. Metal hardware and metal feet on the bottom. Outside zip pocket. Named for the very first bag Bo ever made — built to carry everything, built to last.",
+    specs: [
+      "Calfskin leather, 100% leather shell",
+      "Polyester lining",
+      "19.25\" W × 22\" H × 38.5\" circumference",
+      "Two top handles, 8\" drop",
+      "Adjustable, removable shoulder strap",
+      "Drawcord closure",
+      "Interior leather patch pocket",
+      "Outside zip pocket",
+      "Metal hardware + bottom feet studs",
+      "Made in USA, imported hides",
+    ],
+    status: "made-to-order",
+  },
+
+  // ─── Rest of collection ─────────────────────────────────────────────────────
   {
     slug: "shopping-bag",
     name: "Shopping Bag",
@@ -94,30 +145,6 @@ export const products: Product[] = [
     status: "made-to-order",
   },
   {
-    slug: "gym-duffle-bag",
-    name: "Gym Duffle Bag",
-    category: "Duffle",
-    price: null,
-    stripePaymentLink: null,
-    image: "/products/gym-duffle.jpg",
-    images: ["/products/gym-duffle.jpg"],
-    description:
-      "Leather bag with drawcord closure, adjustable leather logo-webbing strap. Metal hardware and metal feet on the bottom. Outside zip pocket. Named for the very first bag Bo ever made — built to carry everything, built to last.",
-    specs: [
-      "Calfskin leather, 100% leather shell",
-      "Polyester lining",
-      "19.25\" W × 22\" H × 38.5\" circumference",
-      "Two top handles, 8\" drop",
-      "Adjustable, removable shoulder strap",
-      "Drawcord closure",
-      "Interior leather patch pocket",
-      "Outside zip pocket",
-      "Metal hardware + bottom feet studs",
-      "Made in USA, imported hides",
-    ],
-    status: "made-to-order",
-  },
-  {
     slug: "flat-back-pack",
     name: "Flat Back Pack",
     category: "Backpack",
@@ -166,7 +193,11 @@ export const products: Product[] = [
     price: null,
     stripePaymentLink: null,
     image: "/products/drawcord-backpack.jpg",
-    images: ["/products/drawcord-backpack.jpg"],
+    images: [
+      "/products/drawcord-backpack.jpg",
+      "/products/drawcord-backpack-2.jpg",
+      "/products/drawcord-backpack-3.jpg",
+    ],
     description:
       "The everyday carry — a premium leather drawstring backpack that collapses flat and expands to carry everything. Simple form, extraordinary material. Leather drawcord, metal eyelets, cotton canvas lining.",
     specs: [
@@ -186,7 +217,11 @@ export const products: Product[] = [
     price: null,
     stripePaymentLink: null,
     image: "/products/sling-bag.jpg",
-    images: ["/products/sling-bag.jpg"],
+    images: [
+      "/products/sling-bag.jpg",
+      "/products/sling-bag-2.jpg",
+      "/products/sling-bag-interior.jpg",
+    ],
     description:
       "All leather, front zipper pocket, leather adjustable strap, carry handle, inside zipper pocket. 100% cotton lining. A clean, functional design that wears as well with a suit as it does on the street.",
     specs: [
