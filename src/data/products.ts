@@ -237,6 +237,60 @@ export const products: Product[] = [
     status: "made-to-order",
   },
   {
+    // TODO: placeholder name — confirm with Bo
+    slug: "compact-sling-black",
+    name: "Compact Sling — Black",
+    category: "Sling",
+    price: null,
+    stripePaymentLink: null,
+    image: "/products/compact-sling-black.jpg",
+    images: [
+      "/products/compact-sling-black.jpg",
+      "/products/compact-sling-black-2.jpg",
+      "/products/compact-sling-black-3.jpg",
+      "/products/compact-sling-black-4.jpg",
+    ],
+    description:
+      "Full-grain black leather sling pack with a front zip pocket, top carry handle, and wide padded leather strap. Built to carry what matters — clean enough to wear with anything.",
+    specs: [
+      "Full-grain leather shell",
+      "Front zip pocket with debossed B3B logo",
+      "Wide padded leather adjustable strap",
+      "Top carry handle",
+      "Side zip-around main compartment",
+      "Padded back panel",
+      "Gunmetal hardware throughout",
+      "Made in USA, imported hides",
+    ],
+    status: "made-to-order",
+  },
+  {
+    // TODO: placeholder name — confirm with Bo
+    slug: "compact-sling-brown",
+    name: "Compact Sling — Brown",
+    category: "Sling",
+    price: null,
+    stripePaymentLink: null,
+    image: "/products/compact-sling-brown.jpg",
+    images: [
+      "/products/compact-sling-brown.jpg",
+      "/products/compact-sling-brown-2.jpg",
+    ],
+    description:
+      "Full-grain chocolate brown leather sling pack with a front zip pocket, top carry handle, and wide padded leather strap. Built to carry what matters — clean enough to wear with anything.",
+    specs: [
+      "Full-grain leather shell",
+      "Front zip pocket with debossed B3B logo",
+      "Wide padded leather adjustable strap",
+      "Top carry handle",
+      "Side zip-around main compartment",
+      "Padded back panel",
+      "Gunmetal hardware throughout",
+      "Made in USA, imported hides",
+    ],
+    status: "made-to-order",
+  },
+  {
     slug: "cap",
     name: "Cap",
     category: "Accessory",
