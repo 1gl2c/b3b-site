@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import Marquee from "@/components/ui/Marquee";
@@ -19,23 +18,23 @@ export default function Home() {
     <div className="bg-[#0e0e0e]">
       <Nav dark />
 
-      {/* ─── HERO: Video loop ─── */}
-      <section className="relative h-screen min-h-[600px] overflow-hidden flex flex-col items-center justify-center text-center">
-        <div className="absolute inset-0 overflow-hidden">
-          <VideoLoop
-            src="/videos/hero-loop.mp4"
-            poster="/products/flat-backpack.jpg"
-          />
+      {/* ─── HERO: Editorial full-screen ─── */}
+      <section className="relative h-screen min-h-[700px] overflow-hidden">
+        {/* Video background */}
+        <div className="absolute inset-0">
+          <VideoLoop src="/videos/hero-loop.mp4" poster="/products/drawcord-backpack.jpg" />
         </div>
 
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/55" />
+        {/* Gradient: heavy on left for text, fades right to let video breathe */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/15 pointer-events-none" />
+        {/* Bottom vignette */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
 
-        {/* Fractal noise SVG overlay */}
+        {/* Fractal noise overlay */}
         <svg
           className="absolute inset-0 w-full h-full pointer-events-none"
           aria-hidden="true"
-          style={{ opacity: 0.04 }}
+          style={{ opacity: 0.045 }}
         >
           <filter id="noise">
             <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
@@ -44,36 +43,79 @@ export default function Home() {
           <rect width="100%" height="100%" filter="url(#noise)" />
         </svg>
 
-        {/* Content */}
-        <div className="relative z-10 flex flex-col items-center gap-4 px-6">
-          <Image
-            src="/images/logos/logo-white.png"
-            alt="B3B"
-            width={280}
-            height={146}
-            className="object-contain"
-            style={{ width: "clamp(220px, 16vw, 380px)", height: "auto" }}
-            priority
-          />
-          <p className="text-[11px] tracking-[0.3em] uppercase text-[#f0ebe3]/70 mt-1">
-            Built for the Journey
-          </p>
+        {/* Est. 2021 — top left, last to appear */}
+        <div
+          className="absolute top-8 left-10 z-10 hero-animate hero-fade"
+          style={{ animationDelay: "1.9s" }}
+        >
+          <span className="text-[9px] tracking-[0.32em] uppercase text-[#f5f2ee]/40">Est. 2021</span>
         </div>
 
-        {/* CTA buttons at bottom of hero */}
-        <div className="absolute bottom-12 left-0 right-0 flex justify-center gap-3 z-10">
-          <Link
-            href="/collections"
-            className="px-9 py-3.5 bg-[#f5f2ee] text-[#1a1a1a] text-[10px] tracking-[0.2em] uppercase rounded-full transition-colors hover:bg-white"
+        {/* Main editorial block: left-aligned, vertically centered */}
+        <div className="absolute inset-0 z-10 flex flex-col justify-center pl-10 md:pl-16 pr-6 pb-16">
+          {/* Kicker */}
+          <p
+            className="text-[9px] tracking-[0.28em] uppercase text-[#f5f2ee]/50 mb-7 hero-animate hero-fade"
+            style={{ animationDelay: "0.1s" }}
           >
-            Shop the Collection
-          </Link>
-          <Link
-            href="/heritage"
-            className="px-9 py-3.5 bg-transparent text-[#f5f2ee] text-[10px] tracking-[0.2em] uppercase border border-[#f5f2ee]/30 rounded-full hover:border-[#f5f2ee]/60 transition-colors"
+            Full-Grain Leather &middot; Made to Order
+          </p>
+
+          {/* Giant wordmark — each char blur-reveals with stagger */}
+          <h1
+            className="font-serif italic text-[#f5f2ee] leading-[0.86]"
+            style={{ fontSize: "clamp(72px, 17vw, 256px)", letterSpacing: "-0.04em" }}
+            aria-label="B3B"
           >
-            Our Heritage
-          </Link>
+            {(["B", "3", "B"] as const).map((char, i) => (
+              <span
+                key={i}
+                aria-hidden="true"
+                className="hero-animate hero-blur inline-block"
+                style={{ animationDelay: `${0.28 + i * 0.18}s` }}
+              >
+                {char}
+              </span>
+            ))}
+          </h1>
+
+          {/* Tagline — Instrument Serif italic, smaller */}
+          <p
+            className="italic font-serif text-[#f5f2ee]/75 leading-[1.1] mt-5 hero-animate hero-fade"
+            style={{
+              fontSize: "clamp(20px, 3.2vw, 58px)",
+              animationDelay: "0.9s",
+            }}
+          >
+            Built for the Journey.
+          </p>
+
+          {/* CTAs */}
+          <div
+            className="flex gap-3 mt-10 flex-wrap hero-animate hero-fade"
+            style={{ animationDelay: "1.35s" }}
+          >
+            <Link
+              href="/collections"
+              className="px-9 py-3.5 bg-[#f5f2ee] text-[#1a1a1a] text-[10px] tracking-[0.2em] uppercase rounded-full transition-colors hover:bg-white"
+            >
+              Shop the Collection
+            </Link>
+            <Link
+              href="/heritage"
+              className="px-9 py-3.5 bg-transparent text-[#f5f2ee] text-[10px] tracking-[0.2em] uppercase border border-[#f5f2ee]/30 rounded-full hover:border-[#f5f2ee]/60 transition-colors"
+            >
+              Our Heritage
+            </Link>
+          </div>
+        </div>
+
+        {/* Scroll hint — bottom right, last */}
+        <div
+          className="absolute bottom-8 right-10 z-10 hero-animate hero-fade"
+          style={{ animationDelay: "2.1s" }}
+        >
+          <span className="text-[9px] tracking-[0.22em] uppercase text-[#f5f2ee]/30">Scroll</span>
         </div>
       </section>
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import { timelineItems, brandValues } from "@/lib/data";
@@ -63,6 +64,31 @@ export default function Heritage() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* PROTOTYPE — garage origin photo */}
+      <section className="px-10 py-18 bg-[#ede9e3] border-t border-[#ddd8cf] grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div className="relative h-[480px] overflow-hidden bg-[#e8e3da]">
+          <Image
+            src="/products/crossbody-saddle.jpg"
+            alt="The original B3B sling prototype — hand-crafted in Bo's garage, 2021"
+            fill
+            className="object-contain object-center"
+            sizes="50vw"
+          />
+        </div>
+        <div>
+          <span className="text-[9px] tracking-[0.24em] uppercase text-[#8a7f72] block mb-4">Where It Started</span>
+          <h2 className="text-[28px] italic font-serif text-[#1a1a1a] font-normal leading-[1.2] mb-4">
+            The first one came out of a garage. It always does.
+          </h2>
+          <p className="text-[13px] text-[#8a7f72] leading-[1.9] mb-4">
+            Before production runs and professional shoots, there was a single prototype — cut and stitched by Bo's own hands in his garage. This is that bag. Every detail was worked out here first: the strap angle, the hardware placement, the proportions. Nothing ships until Bo is satisfied, and satisfaction has a 35-year standard.
+          </p>
+          <p className="text-[11px] tracking-[0.14em] uppercase text-[#c5bdb2] italic">
+            The original Sling Bag prototype — Los Angeles, 2021
+          </p>
         </div>
       </section>
 

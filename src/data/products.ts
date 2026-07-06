@@ -62,6 +62,62 @@ export const products: Product[] = [
     status: "made-to-order",
   },
 
+  // ─── Production run — 20 units ──────────────────────────────────────────────
+  // TODO: 20 production units made — may become "available" / "Ready to Ship"
+  //       instead of made-to-order once fulfillment is confirmed with Bo.
+  {
+    slug: "sling-bag-black",
+    name: "Sling Bag — Black",
+    category: "Sling",
+    price: null,
+    stripePaymentLink: null,
+    image: "/products/compact-sling-black.jpg",
+    images: [
+      "/products/compact-sling-black.jpg",
+      "/products/compact-sling-black-2.jpg",
+      "/products/compact-sling-black-3.jpg",
+      "/products/compact-sling-black-4.jpg",
+    ],
+    description:
+      "Full-grain black leather sling pack. Front zip pocket with debossed B3B logo, wide padded leather adjustable strap, top carry handle, and a side zip-around main compartment. Worn across the body — carries what matters, gets out of the way.",
+    specs: [
+      "Full-grain leather shell",
+      "Front zip pocket with debossed B3B logo",
+      "Wide padded leather adjustable strap",
+      "Top carry handle",
+      "Side zip-around main compartment",
+      "Padded back panel",
+      "Gunmetal hardware throughout",
+      "Made in USA, imported hides",
+    ],
+    status: "made-to-order",
+  },
+  {
+    slug: "sling-bag-brown",
+    name: "Sling Bag — Brown",
+    category: "Sling",
+    price: null,
+    stripePaymentLink: null,
+    image: "/products/compact-sling-brown.jpg",
+    images: [
+      "/products/compact-sling-brown.jpg",
+      "/products/compact-sling-brown-2.jpg",
+    ],
+    description:
+      "Full-grain chocolate brown leather sling pack. Front zip pocket with debossed B3B logo, wide padded leather adjustable strap, top carry handle, and a side zip-around main compartment. Worn across the body — carries what matters, gets out of the way.",
+    specs: [
+      "Full-grain leather shell",
+      "Front zip pocket with debossed B3B logo",
+      "Wide padded leather adjustable strap",
+      "Top carry handle",
+      "Side zip-around main compartment",
+      "Padded back panel",
+      "Gunmetal hardware throughout",
+      "Made in USA, imported hides",
+    ],
+    status: "made-to-order",
+  },
+
   // ─── Rest of collection ─────────────────────────────────────────────────────
   {
     slug: "shopping-bag",
@@ -79,26 +135,6 @@ export const products: Product[] = [
       "Debossed B3B logo",
       "Fully lined interior",
       "Top zip closure",
-      "Made in USA, imported hides",
-    ],
-    status: "made-to-order",
-  },
-  {
-    slug: "leather-cross-body-saddle-bag",
-    name: "Leather Cross Body Saddle Bag",
-    category: "Crossbody",
-    price: null,
-    stripePaymentLink: null,
-    image: "/products/crossbody-saddle.jpg",
-    images: ["/products/crossbody-saddle.jpg"],
-    description:
-      "Designed for movement. This full-grain leather crossbody saddle bag sits clean against the body, carries what matters, and arrives in leather that only gets better with every mile.",
-    specs: [
-      "Full-grain leather",
-      "Adjustable crossbody strap",
-      "Front flap + magnetic snap closure",
-      "Interior card slots + zip pocket",
-      "Solid metal hardware",
       "Made in USA, imported hides",
     ],
     status: "made-to-order",
@@ -232,60 +268,6 @@ export const products: Product[] = [
       "Leather adjustable strap",
       "Top carry handle",
       "Metal hardware",
-      "Made in USA, imported hides",
-    ],
-    status: "made-to-order",
-  },
-  {
-    // TODO: placeholder name — confirm with Bo
-    slug: "compact-sling-black",
-    name: "Compact Sling — Black",
-    category: "Sling",
-    price: null,
-    stripePaymentLink: null,
-    image: "/products/compact-sling-black.jpg",
-    images: [
-      "/products/compact-sling-black.jpg",
-      "/products/compact-sling-black-2.jpg",
-      "/products/compact-sling-black-3.jpg",
-      "/products/compact-sling-black-4.jpg",
-    ],
-    description:
-      "Full-grain black leather sling pack with a front zip pocket, top carry handle, and wide padded leather strap. Built to carry what matters — clean enough to wear with anything.",
-    specs: [
-      "Full-grain leather shell",
-      "Front zip pocket with debossed B3B logo",
-      "Wide padded leather adjustable strap",
-      "Top carry handle",
-      "Side zip-around main compartment",
-      "Padded back panel",
-      "Gunmetal hardware throughout",
-      "Made in USA, imported hides",
-    ],
-    status: "made-to-order",
-  },
-  {
-    // TODO: placeholder name — confirm with Bo
-    slug: "compact-sling-brown",
-    name: "Compact Sling — Brown",
-    category: "Sling",
-    price: null,
-    stripePaymentLink: null,
-    image: "/products/compact-sling-brown.jpg",
-    images: [
-      "/products/compact-sling-brown.jpg",
-      "/products/compact-sling-brown-2.jpg",
-    ],
-    description:
-      "Full-grain chocolate brown leather sling pack with a front zip pocket, top carry handle, and wide padded leather strap. Built to carry what matters — clean enough to wear with anything.",
-    specs: [
-      "Full-grain leather shell",
-      "Front zip pocket with debossed B3B logo",
-      "Wide padded leather adjustable strap",
-      "Top carry handle",
-      "Side zip-around main compartment",
-      "Padded back panel",
-      "Gunmetal hardware throughout",
       "Made in USA, imported hides",
     ],
     status: "made-to-order",

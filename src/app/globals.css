@@ -102,3 +102,28 @@ body {
   display: inline-block;
   transition: opacity 0.3s ease;
 }
+
+/* ─── Hero load animations ─────────────────────────────────────────────────── */
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hero-char-blur {
+  from { opacity: 0; filter: blur(28px); transform: translateY(12px); }
+  to   { opacity: 1; filter: blur(0px); transform: translateY(0); }
+}
+
+.hero-animate {
+  opacity: 0;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero-fade { animation-name: hero-fade-up; animation-duration: 0.8s; }
+.hero-blur { animation-name: hero-char-blur; animation-duration: 1.0s; }
+
+/* ─── Lightbox ─────────────────────────────────────────────────────────────── */
+@keyframes lightbox-in {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
