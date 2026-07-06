@@ -9,7 +9,7 @@ export default function ProductCard({ product, tall = false }: { product: Produc
 
   return (
     <Link href={`/products/${product.slug}`} className="block group bg-white overflow-hidden cursor-pointer">
-      <div className={`relative overflow-hidden ${tall ? "h-[340px]" : "h-[240px]"}`}>
+      <div className={`relative overflow-hidden bg-[#F8F6F2] ${tall ? "h-[360px]" : "h-[280px]"}`}>
         <span className="absolute top-3 left-3 z-10 text-[8px] tracking-[0.18em] uppercase text-[#8a7f72]">
           Made to Order
         </span>
@@ -18,7 +18,7 @@ export default function ProductCard({ product, tall = false }: { product: Produc
           src={product.image}
           alt={product.name}
           fill
-          className={`object-cover transition-all duration-500 ${
+          className={`object-contain p-5 transition-all duration-500 ${
             secondary ? "group-hover:opacity-0" : "group-hover:scale-[1.03]"
           }`}
           sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
@@ -28,7 +28,7 @@ export default function ProductCard({ product, tall = false }: { product: Produc
             src={secondary}
             alt={`${product.name} alternate`}
             fill
-            className="object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            className="object-contain p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
             sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
           />
         )}

@@ -1,5 +1,6 @@
 "use client";
 import { useRef, useEffect } from "react";
+import Image from "next/image";
 
 interface Props {
   src: string;
@@ -26,9 +27,11 @@ export default function VideoLoop({ src, poster, className = "" }: Props) {
       rafRef.current = requestAnimationFrame(tick);
     };
 
-    const onCanPlay = () => {
-      vid.style.opacity = "0";
-      vid.play().catch(() => {});
+    // Use a flag so we only start fade-in once even if both events fire
+    let started = false;
+    const onStart = () => {
+      if (started) return;
+      started = true;
       startFadeIn();
     };
 
@@ -42,34 +45,56 @@ export default function VideoLoop({ src, poster, className = "" }: Props) {
     };
 
     const onEnded = () => {
+      started = false;
       vid.currentTime = 0;
       vid.style.opacity = "0";
       vid.play().catch(() => {});
-      startFadeIn();
     };
 
-    vid.addEventListener("canplay", onCanPlay);
+    vid.addEventListener("playing", onStart);
+    vid.addEventListener("canplay", onStart);
     vid.addEventListener("timeupdate", onTimeUpdate);
     vid.addEventListener("ended", onEnded);
 
+    // Explicit play() call — belt-and-suspenders on top of the autoPlay attribute.
+    // iOS Safari requires muted + playsInline + autoPlay attribute + a programmatic
+    // play() call for guaranteed inline autoplay.
+    vid.play().catch(() => {});
+
     return () => {
       cancelAnimationFrame(rafRef.current);
-      vid.removeEventListener("canplay", onCanPlay);
+      vid.removeEventListener("playing", onStart);
+      vid.removeEventListener("canplay", onStart);
       vid.removeEventListener("timeupdate", onTimeUpdate);
       vid.removeEventListener("ended", onEnded);
     };
   }, []);
 
   return (
-    <video
-      ref={vidRef}
-      src={src}
-      poster={poster}
-      muted
-      playsInline
-      preload="auto"
-      className={`absolute inset-0 w-full h-full object-cover ${className}`}
-      style={{ opacity: 0 }}
-    />
+    <>
+      {/* Poster image — always visible, gives instant content on slow/mobile connections */}
+      {poster && (
+        <Image
+          src={poster}
+          alt=""
+          fill
+          className="object-cover"
+          sizes="100vw"
+          priority
+          aria-hidden={true}
+        />
+      )}
+      {/* Video fades in over the poster once it starts playing */}
+      <video
+        ref={vidRef}
+        src={src}
+        muted
+        playsInline
+        autoPlay
+        preload="auto"
+        className={`absolute inset-0 w-full h-full object-cover ${className}`}
+        style={{ opacity: 0 }}
+      />
+    </>
   );
 }

@@ -14,30 +14,6 @@ export interface Product {
 export const products: Product[] = [
   // ─── Expected best sellers first ───────────────────────────────────────────
   {
-    // TODO: front + side angles coming in next shoot
-    slug: "black-leather-backpack",
-    name: "Black Leather Backpack",
-    category: "Backpack",
-    price: null,
-    stripePaymentLink: null,
-    image: "/products/black-leather-backpack.jpg",
-    images: [
-      "/products/black-leather-backpack.jpg",
-      "/products/black-leather-backpack-2.jpg",
-    ],
-    description:
-      "Full-grain black leather backpack with padded shoulder straps and a carry handle — built for daily use and built to last. Crafted by Bo with the same precision as every piece in the collection.",
-    specs: [
-      "Full-grain leather shell",
-      "Padded leather shoulder straps",
-      "Top carry handle",
-      "Solid metal hardware",
-      "Debossed B3B logo",
-      "Made in USA, imported hides",
-    ],
-    status: "made-to-order",
-  },
-  {
     slug: "gym-duffle-bag",
     name: "Gym Duffle Bag",
     category: "Duffle",
@@ -223,25 +199,30 @@ export const products: Product[] = [
     status: "made-to-order",
   },
   {
-    slug: "drawcord-back-pack",
-    name: "Drawcord Back Pack",
+    slug: "drawcord-backpack",
+    name: "Drawcord Backpack",
     category: "Backpack",
     price: null,
     stripePaymentLink: null,
     image: "/products/drawcord-backpack.jpg",
     images: [
       "/products/drawcord-backpack.jpg",
-      "/products/drawcord-backpack-2.jpg",
       "/products/drawcord-backpack-3.jpg",
+      "/products/drawcord-backpack-2.jpg",
+      "/products/black-leather-backpack.jpg",
+      "/products/black-leather-backpack-2.jpg",
     ],
     description:
-      "The everyday carry — a premium leather drawstring backpack that collapses flat and expands to carry everything. Simple form, extraordinary material. Leather drawcord, metal eyelets, cotton canvas lining.",
+      "Full-grain black leather backpack with flap closure, red leather drawcord, front zip pocket, padded shoulder straps, and a top carry handle. The B3B graffiti logo debossed on the flap — an everyday carry that improves with use.",
     specs: [
-      "Full-grain leather",
-      "Cotton canvas lining",
-      "Leather drawcord closure",
-      "Leather top carry loop",
-      "Solid metal eyelets",
+      "Full-grain leather shell",
+      "Red leather drawcord closure",
+      "Flap + magnetic clasp closure",
+      "Front zip pocket",
+      "Padded leather shoulder straps",
+      "Top carry handle",
+      "Debossed B3B graffiti logo",
+      "Solid metal hardware",
       "Made in USA, imported hides",
     ],
     status: "made-to-order",

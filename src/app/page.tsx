@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import Marquee from "@/components/ui/Marquee";
@@ -61,30 +62,27 @@ export default function Home() {
             Full-Grain Leather &middot; Made to Order
           </p>
 
-          {/* Giant wordmark — each char blur-reveals with stagger */}
-          <h1
-            className="font-serif italic text-[#f5f2ee] leading-[0.86]"
-            style={{ fontSize: "clamp(72px, 17vw, 256px)", letterSpacing: "-0.04em" }}
-            aria-label="B3B"
+          {/* Trademarked graffiti wordmark — single blur-reveal */}
+          <div
+            className="hero-animate hero-blur mb-2"
+            style={{ animationDelay: "0.28s" }}
           >
-            {(["B", "3", "B"] as const).map((char, i) => (
-              <span
-                key={i}
-                aria-hidden="true"
-                className="hero-animate hero-blur inline-block"
-                style={{ animationDelay: `${0.28 + i * 0.18}s` }}
-              >
-                {char}
-              </span>
-            ))}
-          </h1>
+            <Image
+              src="/images/logos/B3B_logo_white_transparent.png"
+              alt="B3B"
+              width={1163}
+              height={771}
+              className="w-[clamp(180px,42vw,600px)] h-auto"
+              priority
+            />
+          </div>
 
           {/* Tagline — Instrument Serif italic, smaller */}
           <p
-            className="italic font-serif text-[#f5f2ee]/75 leading-[1.1] mt-5 hero-animate hero-fade"
+            className="italic font-serif text-[#f5f2ee]/75 leading-[1.1] mt-3 hero-animate hero-fade"
             style={{
               fontSize: "clamp(20px, 3.2vw, 58px)",
-              animationDelay: "0.9s",
+              animationDelay: "0.75s",
             }}
           >
             Built for the Journey.
@@ -93,7 +91,7 @@ export default function Home() {
           {/* CTAs */}
           <div
             className="flex gap-3 mt-10 flex-wrap hero-animate hero-fade"
-            style={{ animationDelay: "1.35s" }}
+            style={{ animationDelay: "1.2s" }}
           >
             <Link
               href="/collections"
