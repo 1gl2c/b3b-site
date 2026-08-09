@@ -1,3 +1,79 @@
+export interface CollectionTab {
+  slug: string;
+  label: string;
+}
+
+// slug "" is the /collections root (View All). "new-in" filters on Product.isNew.
+// Every other slug must match a Product.collection value in src/data/products.ts.
+export const collectionTabs: CollectionTab[] = [
+  { slug: "", label: "View All" },
+  { slug: "new-in", label: "New In" },
+  { slug: "backpacks", label: "Backpacks" },
+  { slug: "crossbody-shoulder", label: "Crossbody and Shoulder Bags" },
+  { slug: "bumbags", label: "Bumbags" },
+  { slug: "totes", label: "Totes and Handbags" },
+  { slug: "gym-travel", label: "Gym and Travel" },
+  { slug: "accessories", label: "Accessories" },
+];
+
+export interface CollectionHero {
+  image: string;
+  textColor: "light" | "dark";
+  title: string;
+  /** Middle tier — italic serif, between title and body. Only View All / New In use this. */
+  subtitle?: string;
+  body: string;
+}
+
+// Keyed by the same slugs as collectionTabs. A slug with no entry here (e.g.
+// "gym-travel") renders no hero at all — not a broken image, not an empty band.
+export const collectionHeroes: Record<string, CollectionHero> = {
+  "": {
+    image: "/heroes/camp-06-all.png",
+    textColor: "light",
+    title: "Bo's 3 Bags",
+    subtitle: "A lifetime in fashion. A collection of his own.",
+    body: "Made in small numbers by Bo.",
+  },
+  "new-in": {
+    image: "/heroes/camp-06-all.png",
+    textColor: "light",
+    title: "Bo's 3 Bags",
+    subtitle: "A lifetime in fashion. A collection of his own.",
+    body: "Made in small numbers by Bo.",
+  },
+  backpacks: {
+    image: "/heroes/camp-01-backpacks.png",
+    textColor: "light",
+    title: "Backpacks",
+    body: "Built to be carried every day and to look better for it. Structured leather, hardware that holds, and a silhouette that stays honest whether the bag is full or empty.",
+  },
+  "crossbody-shoulder": {
+    image: "/heroes/camp-03-crossbody.png",
+    textColor: "light",
+    title: "Crossbody and Shoulder Bags",
+    body: "Worn close, worn constantly. Slim bodies and long straps for the days you need your hands and nothing else.",
+  },
+  bumbags: {
+    image: "/heroes/camp-02-bumbags.png",
+    textColor: "light",
+    title: "Bumbags",
+    body: "Across the chest or at the waist. Small enough to forget you're wearing it, built well enough that you won't.",
+  },
+  totes: {
+    image: "/heroes/camp-05-totes.png",
+    textColor: "dark",
+    title: "Totes and Handbags",
+    body: "Open, deep, and unstructured by design. Hand-cut panels that no two pieces share.",
+  },
+  accessories: {
+    image: "/heroes/camp-06-all.png",
+    textColor: "light",
+    title: "Accessories",
+    body: "The smaller pieces. Same leather, same hand, same standard.",
+  },
+};
+
 export const reviews = [
   {
     text: "The leather quality is unlike anything I've seen at this price point. This bag is going to last me a decade.",

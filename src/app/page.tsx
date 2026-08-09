@@ -21,15 +21,25 @@ export default function Home() {
 
       {/* ─── HERO: Editorial full-screen ─── */}
       <section className="relative h-screen min-h-[700px] overflow-hidden">
-        {/* Video background */}
+        {/* Campaign image background */}
         <div className="absolute inset-0">
-          <VideoLoop src="/videos/hero-loop.mp4" poster="/products/drawcord-backpack.jpg" />
+          <Image
+            src="/heroes/camp-06-all.png"
+            alt=""
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
+          />
         </div>
 
-        {/* Gradient: heavy on left for text, fades right to let video breathe */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/15 pointer-events-none" />
-        {/* Bottom vignette */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+        {/* Gradient: dark at bottom-left for text, fading out — the shot has a clean left third, not a flat scrim */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: "radial-gradient(ellipse 60% 55% at 0% 100%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 100%)",
+          }}
+        />
 
         {/* Fractal noise overlay */}
         <svg
@@ -52,56 +62,38 @@ export default function Home() {
           <span className="text-[9px] tracking-[0.32em] uppercase text-[#f5f2ee]/40">Est. 2021</span>
         </div>
 
-        {/* Main editorial block: left-aligned, vertically centered */}
-        <div className="absolute inset-0 z-10 flex flex-col justify-center pl-10 md:pl-16 pr-6 pb-16">
+        {/* Main editorial block: bottom-left */}
+        <div className="absolute left-6 bottom-6 md:left-16 md:bottom-16 z-10 max-w-[480px]">
           {/* Kicker */}
           <p
-            className="text-[9px] tracking-[0.28em] uppercase text-[#f5f2ee]/50 mb-7 hero-animate hero-fade"
+            className="text-[12px] tracking-[0.15em] uppercase text-[#f5f2ee]/70 mb-4 hero-animate hero-fade"
             style={{ animationDelay: "0.1s" }}
           >
             Full-Grain Leather &middot; Made to Order
           </p>
 
-          {/* Trademarked graffiti wordmark — single blur-reveal */}
-          <div
-            className="hero-animate hero-blur mb-2"
-            style={{ animationDelay: "0.28s" }}
-          >
-            <Image
-              src="/images/logos/B3B_logo_white_transparent.png"
-              alt="B3B"
-              width={1163}
-              height={771}
-              className="w-[clamp(180px,42vw,600px)] h-auto"
-              priority
-            />
-          </div>
-
-          {/* Tagline — Instrument Serif italic, smaller */}
+          {/* Tagline */}
           <p
-            className="italic font-serif text-[#f5f2ee]/75 leading-[1.1] mt-3 hero-animate hero-fade"
-            style={{
-              fontSize: "clamp(20px, 3.2vw, 58px)",
-              animationDelay: "0.75s",
-            }}
+            className="italic font-serif text-white leading-[1.1] text-[32px] md:text-[56px] hero-animate hero-fade"
+            style={{ animationDelay: "0.5s" }}
           >
             Built for the Journey.
           </p>
 
           {/* CTAs */}
           <div
-            className="flex gap-3 mt-10 flex-wrap hero-animate hero-fade"
-            style={{ animationDelay: "1.2s" }}
+            className="flex gap-3 mt-6 flex-wrap hero-animate hero-fade"
+            style={{ animationDelay: "0.9s" }}
           >
             <Link
               href="/collections"
-              className="px-9 py-3.5 bg-[#f5f2ee] text-[#1a1a1a] text-[10px] tracking-[0.2em] uppercase rounded-full transition-colors hover:bg-white"
+              className="py-4 px-8 bg-[#f5f2ee] text-[#1a1a1a] text-[13px] tracking-[0.1em] uppercase transition-opacity duration-150 hover:opacity-80"
             >
               Shop the Collection
             </Link>
             <Link
               href="/heritage"
-              className="px-9 py-3.5 bg-transparent text-[#f5f2ee] text-[10px] tracking-[0.2em] uppercase border border-[#f5f2ee]/30 rounded-full hover:border-[#f5f2ee]/60 transition-colors"
+              className="py-4 px-8 bg-transparent text-white text-[13px] tracking-[0.1em] uppercase border border-white transition-opacity duration-150 hover:opacity-80"
             >
               Our Heritage
             </Link>
@@ -131,7 +123,7 @@ export default function Home() {
           <CharReveal
             as="h2"
             text="After 35 years building others' dreams, this one is ours."
-            className="text-[30px] italic font-serif text-[#f5f2ee] font-normal leading-[1.2] mb-4"
+            className="text-[34px] italic font-serif text-[#f5f2ee] font-normal leading-[1.2] mb-4"
           />
           <p className="text-[13px] text-[#5a5a5a] leading-[1.9] mb-5">
             Trademarked and established 2021. Eight years in the making. Bo has spent 35+ years working leather — from boxing gyms to fashion houses, from college classrooms to global runways. B3B is not a startup. It is patience made manifest.
@@ -142,7 +134,7 @@ export default function Home() {
           <div className="flex gap-8 pt-6 border-t border-[#242424] mb-8">
             {[["35+", "Years Experience"], ["6", "Categories"], ["1", "Family Legacy"]].map(([num, lbl]) => (
               <div key={lbl}>
-                <div className="text-[28px] italic font-serif text-[#f5f2ee]">{num}</div>
+                <div className="text-[32px] italic font-serif text-[#f5f2ee]">{num}</div>
                 <div className="text-[9px] tracking-[0.14em] uppercase text-[#3a3a3a] mt-1">{lbl}</div>
               </div>
             ))}
@@ -234,7 +226,7 @@ export default function Home() {
         {/* EMAIL CAPTURE */}
         <section className="bg-[#F8F6F2] border-t border-[#e8e4de] px-10 py-16 flex flex-col items-center gap-4 text-center">
           <span className="text-[9px] tracking-[0.26em] uppercase text-[#8a7f72]">Private Access</span>
-          <h2 className="text-[30px] italic font-serif text-[#0a0a0a] font-normal">
+          <h2 className="text-[34px] italic font-serif text-[#0a0a0a] font-normal">
             Be first to know.
           </h2>
           <p className="text-[12px] text-[#8a7f72] tracking-[0.06em]">

@@ -24,27 +24,41 @@ export default function CharReveal({ text, className, as: Tag = "p" }: Props) {
     return () => observer.disconnect();
   }, []);
 
-  const chars = text.split("");
+  const words = text.split(" ");
+  let globalIndex = 0;
+  const nodes: React.ReactNode[] = [];
+
+  words.forEach((word, wi) => {
+    if (wi > 0) {
+      globalIndex++; // space occupies a stagger slot, matching the original per-character timing
+      nodes.push(" ");
+    }
+    nodes.push(
+      <span key={wi} style={{ display: "inline-block", whiteSpace: "nowrap" }}>
+        {word.split("").map((char, ci) => {
+          const delayIndex = Math.min(globalIndex++, MAX_STAGGER_CHARS);
+          return (
+            <span
+              key={ci}
+              aria-hidden="true"
+              style={{
+                opacity: visible ? 1 : 0,
+                display: "inline-block",
+                transition: visible ? `opacity 0.3s ease ${delayIndex * 0.02}s` : "none",
+              }}
+            >
+              {char}
+            </span>
+          );
+        })}
+      </span>
+    );
+  });
 
   return (
     <div ref={ref}>
       <Tag className={className} aria-label={text}>
-        {chars.map((char, i) => {
-          const delayIndex = Math.min(i, MAX_STAGGER_CHARS);
-          return (
-            <span
-              key={i}
-              aria-hidden="true"
-              style={{
-                opacity: visible ? 1 : 0,
-                display: char === " " ? "inline" : "inline-block",
-                transition: visible ? `opacity 0.3s ease ${delayIndex * 0.02}s` : "none",
-              }}
-            >
-              {char === " " ? " " : char}
-            </span>
-          );
-        })}
+        {nodes}
       </Tag>
     </div>
   );

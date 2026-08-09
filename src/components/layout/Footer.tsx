@@ -1,14 +1,12 @@
 import Link from "next/link";
 
 const shopLinks = [
-  { label: "Backpacks",   href: "/collections?category=Backpack" },
-  { label: "Belt Bags",   href: "/collections?category=Belt+Bag" },
-  { label: "Crossbody",   href: "/collections?category=Crossbody" },
-  { label: "Duffles",     href: "/collections?category=Duffle" },
-  { label: "Handbags",    href: "/collections?category=Handbag" },
-  { label: "Slings",      href: "/collections?category=Sling" },
-  { label: "Totes",       href: "/collections?category=Tote" },
-  { label: "Accessories", href: "/collections?category=Accessory" },
+  { label: "Backpacks",                    href: "/collections/backpacks" },
+  { label: "Crossbody and Shoulder Bags",  href: "/collections/crossbody-shoulder" },
+  { label: "Bumbags",                      href: "/collections/bumbags" },
+  { label: "Totes and Handbags",           href: "/collections/totes" },
+  { label: "Gym and Travel",               href: "/collections/gym-travel" },
+  { label: "Accessories",                  href: "/collections/accessories" },
 ];
 
 const brandLinks = [
@@ -22,7 +20,7 @@ export default function Footer() {
     <footer className="bg-[#1a1a1a] border-t border-[#242424] px-10 pt-14 pb-7">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
         <div>
-          <div className="text-[26px] italic font-serif text-[#f5f2ee] mb-3 leading-none">
+          <div className="text-[30px] italic font-serif text-[#f5f2ee] mb-3 leading-none">
             B3B
           </div>
           <p className="text-[11px] text-[#5a5a5a] leading-relaxed max-w-[200px]">

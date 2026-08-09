@@ -25,7 +25,7 @@ export default function ThankYou() {
         <span className="text-[9px] tracking-[0.3em] uppercase text-[#5a5a5a] mb-5">Order Received</span>
 
         <h1
-          className="text-[42px] italic font-serif text-[#f0ebe3] font-normal leading-[1.1] mb-5 max-w-lg"
+          className="text-[48px] italic font-serif text-[#f0ebe3] font-normal leading-[1.1] mb-5 max-w-lg"
         >
           Bo begins your piece.
         </h1>

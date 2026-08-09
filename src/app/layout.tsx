@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Serif } from "next/font/google";
+import { Cormorant_Garamond } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
@@ -7,7 +7,7 @@ import CartDrawer from "@/components/ui/CartDrawer";
 import SearchModal from "@/components/ui/SearchModal";
 import AccountModal from "@/components/ui/AccountModal";
 
-const instrumentSerif = Instrument_Serif({
+const displaySerif = Cormorant_Garamond({
   subsets: ["latin"],
   weight: "400",
   style: ["normal", "italic"],
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${GeistSans.variable} ${instrumentSerif.variable}`}>
+      <body className={`${GeistSans.variable} ${displaySerif.variable}`}>
         <CartProvider>
           {children}
           <CartDrawer />

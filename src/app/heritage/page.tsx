@@ -14,7 +14,7 @@ export default function Heritage() {
         <div className="flex flex-col gap-5">
           <span className="text-[9px] tracking-[0.24em] uppercase text-[#8a7f72]">Heritage</span>
           <h1
-            className="text-[56px] italic text-[#1a1a1a] font-normal leading-[1.05] font-serif"
+            className="text-[64px] italic text-[#1a1a1a] font-normal leading-[1.05] font-serif"
           >
             Built for the Journey.
           </h1>
@@ -37,7 +37,7 @@ export default function Heritage() {
               key={lbl}
               className={`flex justify-between items-baseline py-5 border-b border-[#ddd8cf] ${i === 0 ? "border-t" : ""}`}
             >
-              <span className="text-[32px] italic text-[#1a1a1a] font-serif">{num}</span>
+              <span className="text-[36px] italic text-[#1a1a1a] font-serif">{num}</span>
               <span className="text-[10px] tracking-[0.16em] uppercase text-[#8a7f72]">{lbl}</span>
             </div>
           ))}
@@ -80,7 +80,7 @@ export default function Heritage() {
         </div>
         <div>
           <span className="text-[9px] tracking-[0.24em] uppercase text-[#8a7f72] block mb-4">Where It Started</span>
-          <h2 className="text-[28px] italic font-serif text-[#1a1a1a] font-normal leading-[1.2] mb-4">
+          <h2 className="text-[32px] italic font-serif text-[#1a1a1a] font-normal leading-[1.2] mb-4">
             The first one came out of a garage. It always does.
           </h2>
           <p className="text-[13px] text-[#8a7f72] leading-[1.9] mb-4">
@@ -95,7 +95,7 @@ export default function Heritage() {
       {/* MISSION QUOTE — dark section */}
       <section className="bg-[#1a1a1a] px-10 py-20 grid grid-cols-2 gap-20 items-center">
         <blockquote
-          className="text-[32px] italic text-[#f5f2ee] font-normal leading-[1.3] font-serif"
+          className="text-[36px] italic text-[#f5f2ee] font-normal leading-[1.3] font-serif"
         >
           &ldquo;They don&apos;t just carry your things. They carry your identity.&rdquo;
         </blockquote>
@@ -127,7 +127,7 @@ export default function Heritage() {
           ].map((item) => (
             <div key={item.word} className="bg-[#f5f2ee] px-8 py-9">
               <div
-                className="text-[56px] italic text-[#ddd8cf] font-normal leading-none mb-1 font-serif"
+                className="text-[64px] italic text-[#ddd8cf] font-normal leading-none mb-1 font-serif"
               >
                 {item.letter}
               </div>
@@ -145,7 +145,7 @@ export default function Heritage() {
           {brandValues.map((v) => (
             <div key={v.num} className="bg-[#f5f2ee] px-7 py-8">
               <div
-                className="text-[32px] italic text-[#ede9e3] font-normal leading-none mb-[-4px] font-serif"
+                className="text-[36px] italic text-[#ede9e3] font-normal leading-none mb-[-4px] font-serif"
               >
                 {v.num}
               </div>

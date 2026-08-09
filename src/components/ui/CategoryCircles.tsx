@@ -4,12 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 
 const categories = [
-  { label: "Backpacks",     img: "/products/flat-backpack.jpg",      href: "/collections?category=Backpack" },
-  { label: "Belt Bags",     img: "/products/belt-bag.jpg",           href: "/collections?category=Belt+Bag" },
-  { label: "Cylinder Bags", img: "/products/cylinder-hand-bag.jpg",  href: "/collections?category=Handbag" },
-  { label: "Crossbody",     img: "/products/crossbody-saddle.jpg",   href: "/collections?category=Crossbody" },
-  { label: "Drawstring",    img: "/products/drawcord-backpack.jpg",  href: "/collections?category=Backpack" },
-  { label: "Caps",          img: "/products/cap.jpg",                href: "/collections?category=Accessory" },
+  { label: "Backpacks",     img: "/products/dcb/dcb-a1.png",  href: "/collections/backpacks" },
+  { label: "Belt Bags",     img: "/products/bum/bum-a1.png",  href: "/collections/bumbags" },
+  { label: "Cylinder Bags", img: "/products/cyl/cyl-a1.png",  href: "/collections/totes" },
+  { label: "Crossbody",     img: "/products/cbs/cbs-a1.png",  href: "/collections/crossbody-shoulder" },
+  { label: "Drawstring",    img: "/products/dcb/dcb-a2.png",  href: "/collections/backpacks" },
+  { label: "Caps",          img: "/products/cap/cap-a1.png",  href: "/collections/accessories" },
 ];
 
 function Circle({ cat, index }: { cat: typeof categories[0]; index: number }) {

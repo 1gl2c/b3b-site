@@ -1,48 +1,49 @@
+"use client";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { Product } from "@/data/products";
 
 export default function ProductCard({ product, tall = false }: { product: Product; tall?: boolean }) {
-  const secondary = product.images[1] && product.images[1] !== product.images[0]
-    ? product.images[1]
-    : undefined;
+  const [hoverSrc, setHoverSrc] = useState(product.card.hover);
+  const [triedFallback, setTriedFallback] = useState(false);
+
+  // {code}-model.png may not exist yet — fall back to {code}-a2.png with no code change
+  // required once the model shot is actually added to the folder.
+  const handleHoverError = () => {
+    if (triedFallback) return;
+    setTriedFallback(true);
+    const fallback = product.card.gallery.find((g) => g.includes(`${product.code}-a2`));
+    if (fallback) setHoverSrc(fallback);
+  };
 
   return (
-    <Link href={`/products/${product.slug}`} className="block group bg-white overflow-hidden cursor-pointer">
-      <div className={`relative overflow-hidden bg-[#F8F6F2] ${tall ? "h-[360px]" : "h-[280px]"}`}>
-        <span className="absolute top-3 left-3 z-10 text-[8px] tracking-[0.18em] uppercase text-[#8a7f72]">
-          Made to Order
-        </span>
-
+    <Link
+      href={`/products/${product.slug}`}
+      className="product-card group block"
+    >
+      <div className={`relative overflow-hidden bg-[#F2F1EF] ${tall ? "aspect-[3/4]" : "aspect-square"}`}>
         <Image
-          src={product.image}
+          src={product.card.primary}
           alt={product.name}
           fill
-          className={`object-contain p-5 transition-all duration-500 ${
-            secondary ? "group-hover:opacity-0" : "group-hover:scale-[1.03]"
-          }`}
-          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+          className="object-cover"
+          sizes="(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
         />
-        {secondary && (
-          <Image
-            src={secondary}
-            alt={`${product.name} alternate`}
-            fill
-            className="object-contain p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-          />
-        )}
+        <Image
+          src={hoverSrc}
+          alt=""
+          fill
+          onError={handleHoverError}
+          className="product-card-hover-img object-cover opacity-0 transition-opacity duration-[400ms]"
+          sizes="(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
+        />
       </div>
 
-      <div className="px-4 pt-3.5 pb-5 border-b border-[#ede9e3]">
-        <div className="text-[9px] tracking-[0.16em] uppercase text-[#8a7f72] mb-1">{product.category}</div>
-        <div className="text-[15px] italic font-serif text-[#0a0a0a] mb-1.5 group-hover:underline underline-offset-2 decoration-[#0a0a0a]/30 transition-all">
-          {product.name}
-        </div>
-        <div className="flex items-center justify-between">
-          <span className="text-[12px] italic text-[#8a7f72] font-serif">
-            {product.price != null ? `$${product.price.toLocaleString()}` : "Pricing soon"}
-          </span>
+      <div className="pt-3">
+        <div className="text-[15px] text-[#1a1a1a]">{product.name}</div>
+        <div className="text-[15px] text-[#1a1a1a]/55">
+          {product.price != null ? `$${product.price.toLocaleString()}` : "Pricing soon"}
         </div>
       </div>
     </Link>

@@ -58,7 +58,7 @@ export default function PDPPageClient({ product, related }: Props) {
             ))}
           </div>
 
-          <h1 className="text-[40px] italic font-serif text-[#0a0a0a] font-normal leading-[1.05] mb-2">
+          <h1 className="text-[46px] italic font-serif text-[#0a0a0a] font-normal leading-[1.05] mb-2">
             {product.name}
           </h1>
           <p className="text-[10px] tracking-[0.18em] uppercase text-[#8a7f72] mb-6">
@@ -67,7 +67,7 @@ export default function PDPPageClient({ product, related }: Props) {
 
           <div className="pb-5 border-b border-[#e8e4de] mb-5">
             {product.price != null ? (
-              <span className="text-[30px] font-serif text-[#0a0a0a]">${product.price.toLocaleString()}</span>
+              <span className="text-[34px] font-serif text-[#0a0a0a]">${product.price.toLocaleString()}</span>
             ) : (
               <span className="text-[15px] italic font-serif text-[#5a5a5a]">Pricing soon</span>
             )}
@@ -139,7 +139,7 @@ export default function PDPPageClient({ product, related }: Props) {
       <FadeUp>
         <div className="bg-[#0a0a0a] px-10 md:px-24 py-20 text-center border-t border-[#1e1e1e]">
           <span className="text-[9px] tracking-[0.26em] uppercase text-[#3a3a3a] block mb-5">The Craft</span>
-          <blockquote className="text-[28px] md:text-[36px] italic font-serif text-[#f0ebe3] font-normal leading-[1.25] max-w-[680px] mx-auto mb-8">
+          <blockquote className="text-[32px] md:text-[40px] italic font-serif text-[#f0ebe3] font-normal leading-[1.25] max-w-[680px] mx-auto mb-8">
             Every stitch placed by someone who spent a lifetime learning where it goes.
           </blockquote>
           <p className="text-[13px] text-[#5a5a5a] leading-[1.95] max-w-[560px] mx-auto">
@@ -187,8 +187,8 @@ export default function PDPPageClient({ product, related }: Props) {
       <FadeUp>
         <div className="grid grid-cols-1 md:grid-cols-3 border-t border-[#1e1e1e] bg-[#0a0a0a] text-[#f0ebe3]">
           <div className="md:col-span-2 px-10 md:px-24 py-16 border-r border-[#1e1e1e]">
-            <div className="text-[72px] italic font-serif text-[#161616] font-normal leading-none mb-[-16px]">35</div>
-            <h2 className="text-[24px] italic font-serif text-[#f0ebe3] font-normal mb-4">
+            <div className="text-[80px] italic font-serif text-[#161616] font-normal leading-none mb-[-16px]">35</div>
+            <h2 className="text-[28px] italic font-serif text-[#f0ebe3] font-normal mb-4">
               Years to make a bag worth carrying.
             </h2>
             <p className="text-[13px] text-[#5a5a5a] leading-[1.9] max-w-[440px]">
@@ -198,7 +198,7 @@ export default function PDPPageClient({ product, related }: Props) {
           <div className="px-10 py-16 flex flex-col justify-center gap-7">
             {[["35+", "Years in fashion"], ["100%", "Leather shell"], ["1", "Family legacy"]].map(([num, lbl]) => (
               <div key={lbl} className="pb-7 border-b border-[#161616] last:border-b-0 last:pb-0">
-                <div className="text-[32px] italic font-serif text-[#f0ebe3]">{num}</div>
+                <div className="text-[36px] italic font-serif text-[#f0ebe3]">{num}</div>
                 <div className="text-[9px] tracking-[0.18em] uppercase text-[#3a3a3a] mt-1">{lbl}</div>
               </div>
             ))}
