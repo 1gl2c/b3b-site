@@ -3,13 +3,16 @@ import PurchaseButton from "@/components/ui/PurchaseButton";
 import { formatPrice } from "@/lib/format";
 
 interface Props {
+  code: string;
+  shopifyVariantId: string;
   name: string;
   price: number | null;
+  image: string;
   category: string;
   stripePaymentLink: string | null;
 }
 
-export default function StickyAddToBag({ name, price, category, stripePaymentLink }: Props) {
+export default function StickyAddToBag({ code, shopifyVariantId, name, price, image, category, stripePaymentLink }: Props) {
   return (
     <div className="sticky bottom-0 bg-white border-t border-[#e8e4de] px-10 py-3.5 flex items-center justify-between z-40">
       <div>
@@ -23,7 +26,10 @@ export default function StickyAddToBag({ name, price, category, stripePaymentLin
         </div>
       </div>
       <div className="w-52">
-        <PurchaseButton productName={name} stripePaymentLink={stripePaymentLink} />
+        <PurchaseButton
+          product={{ shopifyVariantId, code, name, price, image }}
+          stripePaymentLink={stripePaymentLink}
+        />
       </div>
     </div>
   );

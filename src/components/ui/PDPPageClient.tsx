@@ -76,7 +76,7 @@ export default function PDPPageClient({ product, related }: Props) {
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
                 <rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
               </svg>
-              Secure checkout via Stripe
+              Secure checkout
             </span>
             <span className="text-[#ddd8cf]">|</span>
             <span className="flex items-center gap-1.5">
@@ -98,6 +98,8 @@ export default function PDPPageClient({ product, related }: Props) {
 
           <PDPActions
             slug={product.slug}
+            code={product.code}
+            shopifyVariantId={product.shopifyVariantId}
             name={product.name}
             price={product.price}
             image={product.image}
@@ -246,8 +248,11 @@ export default function PDPPageClient({ product, related }: Props) {
       )}
 
       <StickyAddToBag
+        code={product.code}
+        shopifyVariantId={product.shopifyVariantId}
         name={product.name}
         price={product.price}
+        image={product.image}
         category={product.category}
         stripePaymentLink={product.stripePaymentLink}
       />

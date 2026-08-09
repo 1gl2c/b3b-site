@@ -91,6 +91,14 @@ body {
   from { transform: translateX(100%); }
   to   { transform: translateX(0); }
 }
+.cart-drawer-panel {
+  animation: slide-in-right 300ms ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cart-drawer-panel {
+    animation: none;
+  }
+}
 
 /* Ken Burns hero */
 @keyframes ken-burns {

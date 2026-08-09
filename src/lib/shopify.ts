@@ -3,7 +3,9 @@ const TOKEN = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN!;
 const API_URL = `https://${DOMAIN}/api/2024-01/graphql.json`;
 
 async function shopifyFetch(query: string, variables?: Record<string, unknown>) {
-  if (!TOKEN || TOKEN === "YOUR_STOREFRONT_TOKEN_HERE") return null;
+  if (!TOKEN || TOKEN === "YOUR_STOREFRONT_TOKEN_HERE") {
+    throw new Error("Shopify Storefront API token is not configured.");
+  }
   const res = await fetch(API_URL, {
     method: "POST",
     headers: {
@@ -13,6 +15,9 @@ async function shopifyFetch(query: string, variables?: Record<string, unknown>) 
     body: JSON.stringify({ query, variables }),
   });
   const json = await res.json();
+  if (!res.ok || json.errors) {
+    throw new Error(JSON.stringify(json.errors ?? { status: res.status, statusText: res.statusText }));
+  }
   return json.data;
 }
 
@@ -30,9 +35,17 @@ const CREATE_CART = `
   }
 `;
 
-export async function createShopifyCheckout(lines: CartLineItem[]): Promise<string | null> {
+export async function createShopifyCheckout(lines: CartLineItem[]): Promise<string> {
   const data = await shopifyFetch(CREATE_CART, { input: { lines } });
-  return data?.cartCreate?.cart?.checkoutUrl ?? null;
+  const userErrors = data?.cartCreate?.userErrors;
+  if (userErrors && userErrors.length > 0) {
+    throw new Error(JSON.stringify(userErrors));
+  }
+  const checkoutUrl = data?.cartCreate?.cart?.checkoutUrl;
+  if (!checkoutUrl) {
+    throw new Error("Shopify did not return a checkout URL.");
+  }
+  return checkoutUrl;
 }
 
 // Fallback: direct-to-store URL when Shopify API isn't configured yet

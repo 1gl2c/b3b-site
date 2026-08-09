@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useState, useCallback, ReactNode } from "react";
+import { createContext, useContext, useState, useCallback, useEffect, ReactNode } from "react";
 
 export interface WishlistItem {
   id: string;
@@ -8,11 +8,31 @@ export interface WishlistItem {
   image: string;
 }
 
+/** Minimal shape needed to add a line to the cart — mirrors the relevant Product fields. */
+export interface CartLineInput {
+  shopifyVariantId: string;
+  code: string;
+  name: string;
+  price: number | null;
+  image: string;
+}
+
+export interface CartItem {
+  variantId: string;
+  code: string;
+  name: string;
+  price: number;
+  image: string;
+  quantity: number;
+}
+
 interface Toast {
   id: number;
   message: string;
   type: "wishlist";
 }
+
+const CART_STORAGE_KEY = "b3b-cart";
 
 interface CartContextType {
   wishlist: WishlistItem[];
@@ -22,6 +42,15 @@ interface CartContextType {
   setSearchOpen: (v: boolean) => void;
   setAccountOpen: (v: boolean) => void;
   addToWishlist: (item: WishlistItem) => void;
+  items: CartItem[];
+  cartOpen: boolean;
+  setCartOpen: (v: boolean) => void;
+  addToCart: (product: CartLineInput, quantity?: number) => void;
+  removeFromCart: (variantId: string) => void;
+  updateQuantity: (variantId: string, quantity: number) => void;
+  clearCart: () => void;
+  cartCount: number;
+  cartTotal: number;
 }
 
 const CartContext = createContext<CartContextType | null>(null);
@@ -31,6 +60,30 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([]);
   const [searchOpen, setSearchOpen] = useState(false);
   const [accountOpen, setAccountOpen] = useState(false);
+  const [items, setItems] = useState<CartItem[]>([]);
+  const [cartOpen, setCartOpen] = useState(false);
+
+  // Rehydrate from localStorage on mount. Guarded for SSR — this effect never
+  // runs on the server, but the `typeof window` check keeps it explicit.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      const raw = window.localStorage.getItem(CART_STORAGE_KEY);
+      if (raw) setItems(JSON.parse(raw));
+    } catch {
+      // malformed or inaccessible storage — start empty
+    }
+  }, []);
+
+  // Persist on every change.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+    } catch {
+      // storage unavailable (private browsing, quota, etc.)
+    }
+  }, [items]);
 
   const pushToast = useCallback((message: string) => {
     const id = Date.now();
@@ -46,10 +99,52 @@ export function CartProvider({ children }: { children: ReactNode }) {
     pushToast(`${item.name} saved to wishlist`);
   }, [pushToast]);
 
+  const addToCart = useCallback((product: CartLineInput, quantity = 1) => {
+    setItems((prev) => {
+      const existing = prev.find((i) => i.variantId === product.shopifyVariantId);
+      if (existing) {
+        return prev.map((i) =>
+          i.variantId === product.shopifyVariantId ? { ...i, quantity: i.quantity + quantity } : i
+        );
+      }
+      return [
+        ...prev,
+        {
+          variantId: product.shopifyVariantId,
+          code: product.code,
+          name: product.name,
+          price: product.price ?? 0,
+          image: product.image,
+          quantity,
+        },
+      ];
+    });
+  }, []);
+
+  const removeFromCart = useCallback((variantId: string) => {
+    setItems((prev) => prev.filter((i) => i.variantId !== variantId));
+  }, []);
+
+  const updateQuantity = useCallback((variantId: string, quantity: number) => {
+    setItems((prev) => {
+      if (quantity <= 0) return prev.filter((i) => i.variantId !== variantId);
+      return prev.map((i) => (i.variantId === variantId ? { ...i, quantity } : i));
+    });
+  }, []);
+
+  const clearCart = useCallback(() => {
+    setItems([]);
+  }, []);
+
+  const cartCount = items.reduce((sum, i) => sum + i.quantity, 0);
+  const cartTotal = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+
   return (
     <CartContext.Provider value={{
       wishlist, toasts, searchOpen, accountOpen,
       setSearchOpen, setAccountOpen, addToWishlist,
+      items, cartOpen, setCartOpen, addToCart, removeFromCart, updateQuantity, clearCart,
+      cartCount, cartTotal,
     }}>
       {children}
       {/* Toast stack */}

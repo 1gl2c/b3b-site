@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
+import ClearCartOnMount from "@/components/ui/ClearCartOnMount";
 
 export const metadata = {
   title: "Order Received — B3B",
@@ -11,6 +12,7 @@ export const metadata = {
 export default function ThankYou() {
   return (
     <div className="bg-[#0e0e0e] text-[#f0ebe3] min-h-screen flex flex-col">
+      <ClearCartOnMount />
       <Nav dark />
 
       <main className="flex-1 flex flex-col items-center justify-center px-10 py-24 text-center">
@@ -37,7 +39,7 @@ export default function ThankYou() {
           his build queue and will be ready within <strong className="text-[#8a7f72] font-normal">2–3 weeks</strong>.
         </p>
         <p className="text-[13px] text-[#5a5a5a] leading-[1.9] max-w-md mb-10">
-          You'll receive a confirmation from Stripe. For questions, reach Bo directly at{" "}
+          You'll receive a confirmation from Shopify. For questions, reach Bo directly at{" "}
           <a
             href="mailto:mylesstafford17@gmail.com"
             className="text-[#8a7f72] hover:text-[#f0ebe3] transition-colors underline underline-offset-2"
@@ -49,7 +51,7 @@ export default function ThankYou() {
 
         <div className="grid grid-cols-3 gap-px bg-[#1a1a1a] w-full max-w-lg mb-12">
           {[
-            ["Order placed", "Stripe confirmation sent"],
+            ["Order placed", "Shopify confirmation sent"],
             // TODO: confirm shipping policy before launch
             ["2–3 weeks", "Build window"],
             ["Ships direct", "From Bo's studio"],

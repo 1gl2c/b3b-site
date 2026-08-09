@@ -7,6 +7,8 @@ export interface Product {
   isNew?: boolean;
   price: number | null;
   stripePaymentLink: string | null;
+  /** Shopify Storefront API variant GID. */
+  shopifyVariantId: string;
   image: string;
   images: string[];
   /** Grid/collections-card imagery. Kept separate from `image`/`images` (PDP + search) on purpose. */
@@ -36,6 +38,7 @@ export const products: Product[] = [
     name: "Gym Bag",
     category: "Duffle",
     code: "gym",
+    shopifyVariantId: "gid://shopify/ProductVariant/52408970314030",
     collection: "gym-travel",
     price: 850,
     stripePaymentLink: null,
@@ -77,6 +80,7 @@ export const products: Product[] = [
     name: "Sling Bag — Black",
     category: "Sling",
     code: "slb",
+    shopifyVariantId: "gid://shopify/ProductVariant/52408970477870",
     collection: "crossbody-shoulder",
     price: 550,
     stripePaymentLink: null,
@@ -112,6 +116,7 @@ export const products: Product[] = [
     name: "Tote",
     category: "Tote",
     code: "tot",
+    shopifyVariantId: "gid://shopify/ProductVariant/52408970248494",
     collection: "totes",
     price: 1200,
     stripePaymentLink: null,
@@ -147,6 +152,7 @@ export const products: Product[] = [
     name: "Bum Bag — Red & Black",
     category: "Bum Bag",
     code: "bum",
+    shopifyVariantId: "gid://shopify/ProductVariant/52408970510638",
     collection: "bumbags",
     price: 450,
     stripePaymentLink: null,
@@ -183,6 +189,7 @@ export const products: Product[] = [
     name: "Cylinder Handbag",
     category: "Handbag",
     code: "cyl",
+    shopifyVariantId: "gid://shopify/ProductVariant/52408970281262",
     collection: "totes",
     isNew: true,
     price: 950,
@@ -219,6 +226,7 @@ export const products: Product[] = [
     name: "Flat Backpack",
     category: "Backpack",
     code: "flb",
+    shopifyVariantId: "gid://shopify/ProductVariant/52408970346798",
     collection: "backpacks",
     isNew: true,
     price: 750,
@@ -256,6 +264,7 @@ export const products: Product[] = [
     name: "Drawcord Backpack — Black",
     category: "Backpack",
     code: "dcb",
+    shopifyVariantId: "gid://shopify/ProductVariant/52408970379566",
     collection: "backpacks",
     price: 700,
     stripePaymentLink: null,
@@ -294,6 +303,7 @@ export const products: Product[] = [
     name: "Drawcord Backpack — Red",
     category: "Backpack",
     code: "dcr",
+    shopifyVariantId: "gid://shopify/ProductVariant/52408970412334",
     collection: "backpacks",
     price: 700,
     stripePaymentLink: null,
@@ -326,6 +336,7 @@ export const products: Product[] = [
     name: "Crossbody Sling Bag",
     category: "Crossbody Sling",
     code: "cbs",
+    shopifyVariantId: "gid://shopify/ProductVariant/52408970445102",
     collection: "crossbody-shoulder",
     price: 600,
     stripePaymentLink: null,
@@ -363,6 +374,7 @@ export const products: Product[] = [
     name: "Cap",
     category: "Accessory",
     code: "cap",
+    shopifyVariantId: "gid://shopify/ProductVariant/52408970543406",
     collection: "accessories",
     price: 95,
     stripePaymentLink: null,
