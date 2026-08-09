@@ -22,12 +22,13 @@ export default function CollectionsView({ activeSlug }: { activeSlug: string }) 
     );
   }
 
-  const filtered =
+  const filtered = (
     activeSlug === ""
       ? visible
       : activeSlug === "new-in"
         ? visible.filter((p) => p.isNew)
-        : visible.filter((p) => p.collection === activeSlug);
+        : visible.filter((p) => p.collection === activeSlug)
+  ).sort((a, b) => (b.price ?? 0) - (a.price ?? 0));
 
   const activeTab = collectionTabs.find((t) => t.slug === activeSlug);
 

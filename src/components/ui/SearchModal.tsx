@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { products } from "@/data/products";
+import { formatPrice } from "@/lib/format";
 
 export default function SearchModal() {
   const { searchOpen, setSearchOpen } = useCart();
@@ -72,7 +73,7 @@ export default function SearchModal() {
                   <div>
                     <div className="text-[13px] italic text-[#1a1a1a] font-serif">{p.name}</div>
                     <div className="text-[10px] tracking-[0.12em] uppercase text-[#8a7f72]">
-                      {p.category} · {p.price != null ? `$${p.price.toLocaleString()}` : "Pricing soon"}
+                      {p.category} · {formatPrice(p.price)}
                     </div>
                   </div>
                 </Link>

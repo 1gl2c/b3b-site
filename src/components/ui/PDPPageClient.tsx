@@ -8,6 +8,7 @@ import StickyAddToBag from "@/components/ui/StickyAddToBag";
 import FadeUp from "@/components/ui/FadeUp";
 import Lightbox from "@/components/ui/Lightbox";
 import { Product } from "@/data/products";
+import { formatPrice } from "@/lib/format";
 
 interface Props {
   product: Product;
@@ -66,11 +67,7 @@ export default function PDPPageClient({ product, related }: Props) {
           </p>
 
           <div className="pb-5 border-b border-[#e8e4de] mb-5">
-            {product.price != null ? (
-              <span className="text-[34px] font-serif text-[#0a0a0a]">${product.price.toLocaleString()}</span>
-            ) : (
-              <span className="text-[15px] italic font-serif text-[#5a5a5a]">Pricing soon</span>
-            )}
+            <span className="text-[34px] font-serif text-[#0a0a0a]">{formatPrice(product.price)}</span>
           </div>
 
           {/* Trust row */}
@@ -230,9 +227,7 @@ export default function PDPPageClient({ product, related }: Props) {
                 <div className="px-5 py-4">
                   <div className="text-[9px] tracking-[0.14em] uppercase text-[#8a7f72] mb-1">{p.category}</div>
                   <div className="text-[14px] italic font-serif text-[#0a0a0a] mb-1">{p.name}</div>
-                  <div className="text-[11px] italic font-serif text-[#8a7f72]">
-                    {p.price != null ? `$${p.price.toLocaleString()}` : "Pricing soon"}
-                  </div>
+                  <div className="text-[11px] italic font-serif text-[#8a7f72]">{formatPrice(p.price)}</div>
                 </div>
               </Link>
             ))}

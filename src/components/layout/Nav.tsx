@@ -32,7 +32,6 @@ export default function Nav({ dark = false }: { dark?: boolean }) {
           className="object-contain"
           priority
         />
-        <span className="w-1.5 h-1.5 rounded-full bg-[#c41e3a] mt-auto mb-1 flex-shrink-0" />
       </Link>
 
       <div className="hidden md:flex gap-8">

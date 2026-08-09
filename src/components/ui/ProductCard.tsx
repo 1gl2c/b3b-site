@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { Product } from "@/data/products";
+import { formatPrice } from "@/lib/format";
 
 export default function ProductCard({ product, tall = false }: { product: Product; tall?: boolean }) {
   const [hoverSrc, setHoverSrc] = useState(product.card.hover);
@@ -42,9 +43,7 @@ export default function ProductCard({ product, tall = false }: { product: Produc
 
       <div className="pt-3">
         <div className="text-[15px] text-[#1a1a1a]">{product.name}</div>
-        <div className="text-[15px] text-[#1a1a1a]/55">
-          {product.price != null ? `$${product.price.toLocaleString()}` : "Pricing soon"}
-        </div>
+        <div className="text-[15px] text-[#1a1a1a]/55">{formatPrice(product.price)}</div>
       </div>
     </Link>
   );

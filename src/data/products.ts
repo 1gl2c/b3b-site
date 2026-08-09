@@ -37,7 +37,7 @@ export const products: Product[] = [
     category: "Duffle",
     code: "gym",
     collection: "gym-travel",
-    price: null,
+    price: 850,
     stripePaymentLink: null,
     image: "/products/gym/gym-a1.png",
     images: [
@@ -78,7 +78,7 @@ export const products: Product[] = [
     category: "Sling",
     code: "slb",
     collection: "crossbody-shoulder",
-    price: null,
+    price: 550,
     stripePaymentLink: null,
     image: "/products/slb/slb-a1.png",
     images: [
@@ -113,7 +113,7 @@ export const products: Product[] = [
     category: "Tote",
     code: "tot",
     collection: "totes",
-    price: null,
+    price: 1200,
     stripePaymentLink: null,
     image: "/products/tot/tot-a1.png",
     images: [
@@ -148,7 +148,7 @@ export const products: Product[] = [
     category: "Bum Bag",
     code: "bum",
     collection: "bumbags",
-    price: null,
+    price: 450,
     stripePaymentLink: null,
     image: "/products/bum/bum-a1.png",
     images: [
@@ -185,7 +185,7 @@ export const products: Product[] = [
     code: "cyl",
     collection: "totes",
     isNew: true,
-    price: null,
+    price: 950,
     stripePaymentLink: null,
     image: "/products/cyl/cyl-a1.png",
     images: [
@@ -221,7 +221,7 @@ export const products: Product[] = [
     code: "flb",
     collection: "backpacks",
     isNew: true,
-    price: null,
+    price: 750,
     stripePaymentLink: null,
     image: "/products/flb/flb-a1.png",
     images: [
@@ -257,7 +257,7 @@ export const products: Product[] = [
     category: "Backpack",
     code: "dcb",
     collection: "backpacks",
-    price: null,
+    price: 700,
     stripePaymentLink: null,
     image: "/products/dcb/dcb-a1.png",
     images: [
@@ -295,7 +295,7 @@ export const products: Product[] = [
     category: "Backpack",
     code: "dcr",
     collection: "backpacks",
-    price: null,
+    price: 700,
     stripePaymentLink: null,
     image: "/products/dcr/dcr-a1.png",
     images: [
@@ -327,7 +327,7 @@ export const products: Product[] = [
     category: "Crossbody Sling",
     code: "cbs",
     collection: "crossbody-shoulder",
-    price: null,
+    price: 600,
     stripePaymentLink: null,
     image: "/products/cbs/cbs-a1.png",
     images: [
@@ -364,7 +364,7 @@ export const products: Product[] = [
     category: "Accessory",
     code: "cap",
     collection: "accessories",
-    price: null,
+    price: 95,
     stripePaymentLink: null,
     image: "/products/cap/cap-a1.png",
     images: [
