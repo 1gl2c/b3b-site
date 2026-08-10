@@ -54,16 +54,6 @@ body {
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 
-/* Collections category hero banner */
-.collection-hero {
-  height: clamp(520px, 70vh, 760px);
-}
-@media (max-width: 767px) {
-  .collection-hero {
-    height: max(420px, 55vh);
-  }
-}
-
 /* Hidden-scrollbar horizontal scroller (collections tabs on mobile) */
 .no-scrollbar {
   scrollbar-width: none;

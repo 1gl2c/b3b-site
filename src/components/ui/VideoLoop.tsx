@@ -80,7 +80,7 @@ export default function VideoLoop({ src, poster, className = "" }: Props) {
           fill
           className="object-cover"
           sizes="100vw"
-          priority
+          preload
           aria-hidden={true}
         />
       )}

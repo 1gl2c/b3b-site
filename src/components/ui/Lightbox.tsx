@@ -154,7 +154,7 @@ export default function Lightbox({ images, initialIndex, name, onClose }: Props)
               fill
               className="object-contain select-none"
               sizes="(max-width: 900px) 100vw, 900px"
-              priority
+              preload
               draggable={false}
             />
           </div>

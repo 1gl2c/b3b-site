@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import Marquee from "@/components/ui/Marquee";
@@ -9,6 +8,7 @@ import CharReveal from "@/components/ui/CharReveal";
 import PullUp from "@/components/ui/PullUp";
 import FadeUp from "@/components/ui/FadeUp";
 import VideoLoop from "@/components/ui/VideoLoop";
+import HeroImage from "@/components/ui/HeroImage";
 import { products } from "@/data/products";
 import { siteValues, reviews } from "@/lib/data";
 
@@ -19,23 +19,14 @@ export default function Home() {
     <div className="bg-[#0e0e0e]">
       <Nav dark />
 
-      {/* ─── HERO: Editorial full-screen ─── */}
-      <section className="relative h-screen min-h-[700px] overflow-hidden">
+      {/* ─── HERO: Editorial ─── */}
+      <section className="relative overflow-hidden aspect-[4/3] md:aspect-[16/9] lg:aspect-[21/9]">
         {/* Campaign image background */}
-        <div className="absolute inset-0">
-          <Image
-            src="/heroes/camp-06-all.png"
-            alt=""
-            fill
-            priority
-            className="object-cover object-center"
-            sizes="100vw"
-          />
-        </div>
+        <HeroImage src="/heroes/camp-06-all.png" />
 
         {/* Gradient: dark at bottom-left for text, fading out — the shot has a clean left third, not a flat scrim */}
         <div
-          className="absolute inset-0 pointer-events-none"
+          className="hidden md:block absolute inset-0 pointer-events-none"
           style={{
             background: "radial-gradient(ellipse 60% 55% at 0% 100%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 100%)",
           }}
@@ -62,25 +53,20 @@ export default function Home() {
           <span className="text-[9px] tracking-[0.32em] uppercase text-[#f5f2ee]/40">Est. 2021</span>
         </div>
 
-        {/* Main editorial block: bottom-left */}
-        <div className="absolute left-6 bottom-6 md:left-16 md:bottom-16 z-10 max-w-[480px]">
-          {/* Kicker */}
+        {/* Main editorial block: bottom-left — desktop only, overlaid on the image */}
+        <div className="hidden md:block absolute md:left-16 md:bottom-16 z-10 max-w-[480px]">
           <p
             className="text-[12px] tracking-[0.15em] uppercase text-[#f5f2ee]/70 mb-4 hero-animate hero-fade"
             style={{ animationDelay: "0.1s" }}
           >
             Full-Grain Leather &middot; Made to Order
           </p>
-
-          {/* Tagline */}
           <p
-            className="italic font-serif text-white leading-[1.1] text-[32px] md:text-[56px] hero-animate hero-fade"
+            className="italic font-serif text-white leading-[1.1] text-[56px] hero-animate hero-fade"
             style={{ animationDelay: "0.5s" }}
           >
             Built for the Journey.
           </p>
-
-          {/* CTAs */}
           <div
             className="flex gap-3 mt-6 flex-wrap hero-animate hero-fade"
             style={{ animationDelay: "0.9s" }}
@@ -108,6 +94,30 @@ export default function Home() {
           <span className="text-[9px] tracking-[0.22em] uppercase text-[#f5f2ee]/30">Scroll</span>
         </div>
       </section>
+
+      {/* Main editorial block: mobile only, below the image — ink on parchment, never over the model */}
+      <div className="md:hidden bg-[#F5F2EE] px-6 py-8">
+        <p className="text-[12px] tracking-[0.15em] uppercase text-[#1a1a1a]/70 mb-4">
+          Full-Grain Leather &middot; Made to Order
+        </p>
+        <p className="italic font-serif text-[#1a1a1a] leading-[1.1] text-[32px]">
+          Built for the Journey.
+        </p>
+        <div className="flex gap-3 mt-6 flex-wrap">
+          <Link
+            href="/collections"
+            className="py-4 px-8 bg-[#1a1a1a] text-[#f5f2ee] text-[13px] tracking-[0.1em] uppercase transition-opacity duration-150 hover:opacity-80"
+          >
+            Shop the Collection
+          </Link>
+          <Link
+            href="/heritage"
+            className="py-4 px-8 bg-transparent text-[#1a1a1a] text-[13px] tracking-[0.1em] uppercase border border-[#1a1a1a] transition-opacity duration-150 hover:opacity-80"
+          >
+            Our Heritage
+          </Link>
+        </div>
+      </div>
 
       {/* ─── BRAND STORY: dark ─── */}
       <section className="bg-[#0e0e0e] px-10 py-20 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">

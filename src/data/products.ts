@@ -14,7 +14,7 @@ export interface Product {
   /** Grid/collections-card imagery. Kept separate from `image`/`images` (PDP + search) on purpose. */
   card: {
     primary: string;
-    /** Convention-based path — {code}-model.png. May not exist yet; ProductCard falls back to {code}-a2.png on load error. */
+    /** {code}-model.png when the gallery includes one, otherwise {code}-a2.png. */
     hover: string;
     gallery: string[];
   };
@@ -24,9 +24,10 @@ export interface Product {
 }
 
 function buildCard(code: string, gallery: string[]) {
+  const modelShot = `/products/${code}/${code}-model.png`;
   return {
     primary: gallery.find((g) => g.includes(`${code}-a1`)) ?? gallery[0],
-    hover: `/products/${code}/${code}-model.png`,
+    hover: gallery.includes(modelShot) ? modelShot : (gallery.find((g) => g.includes(`${code}-a2`)) ?? gallery[0]),
     gallery,
   };
 }

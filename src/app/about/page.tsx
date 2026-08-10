@@ -16,7 +16,7 @@ export default function About() {
             alt="B3B — Built for the Journey"
             fill
             className="object-cover object-center"
-            priority
+            preload
           />
           <div className="absolute inset-0 bg-black/20" />
         </div>

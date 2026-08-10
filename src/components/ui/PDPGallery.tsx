@@ -28,7 +28,7 @@ export default function PDPGallery({ images, name, onOpenLightbox }: Props) {
             fill
             className="object-contain object-center transition-transform duration-500 group-hover:scale-[1.02]"
             sizes="50vw"
-            priority
+            preload
           />
         </div>
         <span className="absolute bottom-4 right-4 text-[9px] tracking-[0.18em] uppercase text-[#8a7f72]/60 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -36,14 +36,14 @@ export default function PDPGallery({ images, name, onOpenLightbox }: Props) {
         </span>
       </button>
 
-      {/* Thumbnails */}
+      {/* Thumbnails — horizontal scroll on mobile, even fixed columns on desktop */}
       {unique.length > 1 && (
-        <div className="flex">
+        <div className="no-scrollbar flex overflow-x-auto md:overflow-visible">
           {unique.map((img, i) => (
             <button
               key={i}
               onClick={() => setActive(i)}
-              className={`flex-1 h-20 relative border-r border-[#e8e4de] last:border-r-0 overflow-hidden transition-opacity p-2 ${
+              className={`w-20 h-20 md:w-auto md:flex-1 flex-shrink-0 relative border-r border-[#e8e4de] last:border-r-0 overflow-hidden transition-opacity p-2 ${
                 i === active ? "opacity-100 ring-1 ring-inset ring-[#0a0a0a]/20" : "opacity-40 hover:opacity-70"
               }`}
             >

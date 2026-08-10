@@ -30,7 +30,7 @@ export default function Nav({ dark = false }: { dark?: boolean }) {
           width={120}
           height={63}
           className="object-contain"
-          priority
+          preload
         />
       </Link>
 
