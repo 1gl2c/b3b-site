@@ -2,7 +2,7 @@ import { getImageProps } from "next/image";
 import type { CSSProperties } from "react";
 
 interface Props {
-  /** Desktop image path, e.g. "/heroes/camp-06-all.png". A sibling "{name}-mobile.png" is served under 768px. */
+  /** Desktop image path, e.g. "/heroes/camp-06-all.webp". A sibling "{name}-mobile.webp" is served under 768px. */
   src: string;
   alt?: string;
   /**
@@ -16,7 +16,7 @@ interface Props {
 }
 
 export default function HeroImage({ src, alt = "", objectPositionX }: Props) {
-  const mobileSrc = src.replace(/\.png$/, "-mobile.png");
+  const mobileSrc = src.replace(/\.webp$/, "-mobile.webp");
   const common = {
     alt,
     fill: true as const,

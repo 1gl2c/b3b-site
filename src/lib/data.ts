@@ -37,7 +37,7 @@ export interface CollectionHero {
 // "gym-travel") renders no hero at all — not a broken image, not an empty band.
 export const collectionHeroes: Record<string, CollectionHero> = {
   "": {
-    image: "/heroes/camp-06-all.png",
+    image: "/heroes/camp-06-all.webp",
     objectPositionX: "62%",
     textColor: "light",
     title: "Bo's 3 Bags",
@@ -45,7 +45,7 @@ export const collectionHeroes: Record<string, CollectionHero> = {
     body: "Made in small numbers by Bo.",
   },
   "new-in": {
-    image: "/heroes/camp-06-all.png",
+    image: "/heroes/camp-06-all.webp",
     objectPositionX: "62%",
     textColor: "light",
     title: "Bo's 3 Bags",
@@ -53,35 +53,35 @@ export const collectionHeroes: Record<string, CollectionHero> = {
     body: "Made in small numbers by Bo.",
   },
   backpacks: {
-    image: "/heroes/camp-01-backpacks.png",
+    image: "/heroes/camp-01-backpacks.webp",
     objectPositionX: "75%",
     textColor: "light",
     title: "Backpacks",
     body: "Built to be carried every day and to look better for it. Structured leather, hardware that holds, and a silhouette that stays honest whether the bag is full or empty.",
   },
   "crossbody-shoulder": {
-    image: "/heroes/camp-03-crossbody.png",
+    image: "/heroes/camp-03-crossbody.webp",
     objectPositionX: "70%",
     textColor: "light",
     title: "Crossbody and Shoulder Bags",
     body: "Worn close, worn constantly. Slim bodies and long straps for the days you need your hands and nothing else.",
   },
   bumbags: {
-    image: "/heroes/camp-02-bumbags.png",
+    image: "/heroes/camp-02-bumbags.webp",
     objectPositionX: "62%",
     textColor: "light",
     title: "Bumbags",
     body: "Across the chest or at the waist. Small enough to forget you're wearing it, built well enough that you won't.",
   },
   totes: {
-    image: "/heroes/camp-05-totes.png",
+    image: "/heroes/camp-05-totes.webp",
     objectPositionX: "66%",
     textColor: "dark",
     title: "Totes and Handbags",
     body: "Open, deep, and unstructured by design. Hand-cut panels that no two pieces share.",
   },
   accessories: {
-    image: "/heroes/camp-06-all.png",
+    image: "/heroes/camp-06-all.webp",
     objectPositionX: "62%",
     textColor: "light",
     title: "Accessories",
