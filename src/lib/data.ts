@@ -18,6 +18,14 @@ export const collectionTabs: CollectionTab[] = [
 
 export interface CollectionHero {
   image: string;
+  /**
+   * Horizontal focal point (e.g. "75%") for object-position at mobile/tablet
+   * widths. The source photography is wider than every container down to
+   * desktop's 21:9, so cover-crop only ever cuts width, never height —
+   * vertical position is irrelevant. Ignored at ≥1024px, where the crop is
+   * negligible (~99% of width visible) and stays centered.
+   */
+  objectPositionX: string;
   textColor: "light" | "dark";
   title: string;
   /** Middle tier — italic serif, between title and body. Only View All / New In use this. */
@@ -30,6 +38,7 @@ export interface CollectionHero {
 export const collectionHeroes: Record<string, CollectionHero> = {
   "": {
     image: "/heroes/camp-06-all.png",
+    objectPositionX: "62%",
     textColor: "light",
     title: "Bo's 3 Bags",
     subtitle: "A lifetime in fashion. A collection of his own.",
@@ -37,6 +46,7 @@ export const collectionHeroes: Record<string, CollectionHero> = {
   },
   "new-in": {
     image: "/heroes/camp-06-all.png",
+    objectPositionX: "62%",
     textColor: "light",
     title: "Bo's 3 Bags",
     subtitle: "A lifetime in fashion. A collection of his own.",
@@ -44,30 +54,35 @@ export const collectionHeroes: Record<string, CollectionHero> = {
   },
   backpacks: {
     image: "/heroes/camp-01-backpacks.png",
+    objectPositionX: "75%",
     textColor: "light",
     title: "Backpacks",
     body: "Built to be carried every day and to look better for it. Structured leather, hardware that holds, and a silhouette that stays honest whether the bag is full or empty.",
   },
   "crossbody-shoulder": {
     image: "/heroes/camp-03-crossbody.png",
+    objectPositionX: "70%",
     textColor: "light",
     title: "Crossbody and Shoulder Bags",
     body: "Worn close, worn constantly. Slim bodies and long straps for the days you need your hands and nothing else.",
   },
   bumbags: {
     image: "/heroes/camp-02-bumbags.png",
+    objectPositionX: "62%",
     textColor: "light",
     title: "Bumbags",
     body: "Across the chest or at the waist. Small enough to forget you're wearing it, built well enough that you won't.",
   },
   totes: {
     image: "/heroes/camp-05-totes.png",
+    objectPositionX: "66%",
     textColor: "dark",
     title: "Totes and Handbags",
     body: "Open, deep, and unstructured by design. Hand-cut panels that no two pieces share.",
   },
   accessories: {
     image: "/heroes/camp-06-all.png",
+    objectPositionX: "62%",
     textColor: "light",
     title: "Accessories",
     body: "The smaller pieces. Same leather, same hand, same standard.",

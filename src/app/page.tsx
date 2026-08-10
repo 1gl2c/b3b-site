@@ -22,7 +22,7 @@ export default function Home() {
       {/* ─── HERO: Editorial ─── */}
       <section className="relative overflow-hidden aspect-[4/3] md:aspect-[16/9] lg:aspect-[21/9]">
         {/* Campaign image background */}
-        <HeroImage src="/heroes/camp-06-all.png" />
+        <HeroImage src="/heroes/camp-06-all.png" objectPositionX="62%" />
 
         {/* Gradient: dark at bottom-left for text, fading out — the shot has a clean left third, not a flat scrim */}
         <div

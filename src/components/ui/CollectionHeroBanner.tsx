@@ -9,7 +9,7 @@ export default function CollectionHeroBanner({ hero }: { hero?: CollectionHero }
   return (
     <div>
       <div className="relative w-full overflow-hidden aspect-[4/3] md:aspect-[16/9] lg:aspect-[21/9]">
-        <HeroImage src={hero.image} />
+        <HeroImage src={hero.image} objectPositionX={hero.objectPositionX} />
 
         {/* Desktop text overlay — mobile gets its own block below the image instead */}
         <div
