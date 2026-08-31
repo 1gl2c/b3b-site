@@ -13,15 +13,21 @@ interface Props {
    * is negligible.
    */
   objectPositionX: string;
+  /**
+   * Load priority. Defaults to `true` (eager) for above-the-fold hero use —
+   * every existing caller relies on that. Set `false` for the off-screen
+   * slides of a slideshow so only the visible one blocks first paint.
+   */
+  eager?: boolean;
 }
 
-export default function HeroImage({ src, alt = "", objectPositionX }: Props) {
+export default function HeroImage({ src, alt = "", objectPositionX, eager = true }: Props) {
   const mobileSrc = src.replace(/\.webp$/, "-mobile.webp");
   const common = {
     alt,
     fill: true as const,
     sizes: "100vw",
-    loading: "eager" as const,
+    loading: (eager ? "eager" : "lazy") as "eager" | "lazy",
     style: { objectFit: "cover" as const },
   };
   const {

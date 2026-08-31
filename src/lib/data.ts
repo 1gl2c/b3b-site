@@ -37,7 +37,7 @@ export interface CollectionHero {
 // "gym-travel") renders no hero at all — not a broken image, not an empty band.
 export const collectionHeroes: Record<string, CollectionHero> = {
   "": {
-    image: "/heroes/camp-06-all.webp",
+    image: "/heroes/camp-07-rooftop.webp",
     objectPositionX: "62%",
     textColor: "light",
     title: "Bo's 3 Bags",
@@ -45,7 +45,7 @@ export const collectionHeroes: Record<string, CollectionHero> = {
     body: "Made in small numbers by Bo.",
   },
   "new-in": {
-    image: "/heroes/camp-06-all.webp",
+    image: "/heroes/camp-07-rooftop.webp",
     objectPositionX: "62%",
     textColor: "light",
     title: "Bo's 3 Bags",
@@ -81,13 +81,26 @@ export const collectionHeroes: Record<string, CollectionHero> = {
     body: "Open, deep, and unstructured by design. Hand-cut panels that no two pieces share.",
   },
   accessories: {
-    image: "/heroes/camp-06-all.webp",
+    image: "/heroes/camp-07-rooftop.webp",
     objectPositionX: "62%",
     textColor: "light",
     title: "Accessories",
     body: "The smaller pieces. Same leather, same hand, same standard.",
   },
 };
+
+/**
+ * Ordered image set for the View All (`""`) collection banner slideshow —
+ * desktop tree only. camp-07-rooftop leads (matches the homepage hero);
+ * camp-06-all is intentionally omitted, camp-07 replaced it.
+ */
+export const collectionBannerSlides: { image: string; objectPositionX: string }[] = [
+  { image: "/heroes/camp-07-rooftop.webp", objectPositionX: "62%" },
+  { image: "/heroes/camp-01-backpacks.webp", objectPositionX: "75%" },
+  { image: "/heroes/camp-03-crossbody.webp", objectPositionX: "70%" },
+  { image: "/heroes/camp-02-bumbags.webp", objectPositionX: "62%" },
+  { image: "/heroes/camp-05-totes.webp", objectPositionX: "66%" },
+];
 
 export const reviews = [
   {
