@@ -3,8 +3,9 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import ProductCard from "@/components/ui/ProductCard";
 import CollectionHeroBanner from "@/components/ui/CollectionHeroBanner";
+import CollectionHeroSlideshow from "@/components/ui/CollectionHeroSlideshow";
 import { products } from "@/data/products";
-import { collectionTabs, collectionHeroes } from "@/lib/data";
+import { collectionTabs, collectionHeroes, collectionBannerSlides } from "@/lib/data";
 
 export default function CollectionsView({ activeSlug }: { activeSlug: string }) {
   const tabRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
@@ -71,7 +72,11 @@ export default function CollectionsView({ activeSlug }: { activeSlug: string }) 
         </nav>
       </div>
 
-      <CollectionHeroBanner hero={collectionHeroes[activeSlug]} />
+      {activeSlug === "" ? (
+        <CollectionHeroSlideshow hero={collectionHeroes[""]} slides={collectionBannerSlides} />
+      ) : (
+        <CollectionHeroBanner hero={collectionHeroes[activeSlug]} />
+      )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[#e8e4de] p-px">
         {filtered.map((p) => (
