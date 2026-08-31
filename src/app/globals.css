@@ -188,3 +188,16 @@ body:has(.m-root) {
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
 }
+
+/* Frosted glass — bottom tab bar and sticky headers. Subtle, not heavy.
+   The @supports fallback stays legible where backdrop-filter is unavailable. */
+.m-glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .m-glass {
+    background: rgba(255, 255, 255, 0.96);
+  }
+}

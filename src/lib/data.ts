@@ -1,19 +1,21 @@
 export interface CollectionTab {
   slug: string;
   label: string;
+  /** Condensed label for the mobile pill row, where the full label overflows. */
+  shortLabel?: string;
 }
 
 // slug "" is the /collections root (View All). "new-in" filters on Product.isNew.
 // Every other slug must match a Product.collection value in src/data/products.ts.
 export const collectionTabs: CollectionTab[] = [
-  { slug: "", label: "View All" },
-  { slug: "new-in", label: "New In" },
-  { slug: "backpacks", label: "Backpacks" },
-  { slug: "crossbody-shoulder", label: "Crossbody and Shoulder Bags" },
-  { slug: "bumbags", label: "Bumbags" },
-  { slug: "totes", label: "Totes and Handbags" },
-  { slug: "gym-travel", label: "Gym and Travel" },
-  { slug: "accessories", label: "Accessories" },
+  { slug: "", label: "View All", shortLabel: "All" },
+  { slug: "new-in", label: "New In", shortLabel: "New" },
+  { slug: "backpacks", label: "Backpacks", shortLabel: "Backpacks" },
+  { slug: "crossbody-shoulder", label: "Crossbody and Shoulder Bags", shortLabel: "Crossbody" },
+  { slug: "bumbags", label: "Bumbags", shortLabel: "Bumbags" },
+  { slug: "totes", label: "Totes and Handbags", shortLabel: "Totes" },
+  { slug: "gym-travel", label: "Gym and Travel", shortLabel: "Gym & Travel" },
+  { slug: "accessories", label: "Accessories", shortLabel: "Accessories" },
 ];
 
 export interface CollectionHero {

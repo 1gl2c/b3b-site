@@ -7,17 +7,22 @@ import type { NextRequest } from "next/server";
  * routes untouched. The branch runs before any HTML is sent, so there is no
  * flash of desktop layout before hydration.
  *
- * `MOBILE_PATHS` is the allow-list of pages that actually have a `/m`
+ * `hasMobileTree` is the allow-list of pages that actually have a `/m`
  * implementation. It grows one stage at a time:
- *   (a) "/"            ← this stage
- *   (b) + home feed content
+ *   (a) "/"
+ *   (b) + "/collections" and "/collections/*"   ← this stage
  *   (c) + "/products/:slug"
- *   (d) + "/collections", "/collections/:category"
  *
  * v2 seam (known issue): "/about" and "/heritage" are deliberately absent —
  * phones get the desktop editorial pages until mobile versions are designed.
  */
-const MOBILE_PATHS = new Set<string>(["/"]);
+function hasMobileTree(pathname: string): boolean {
+  return (
+    pathname === "/" ||
+    pathname === "/collections" ||
+    pathname.startsWith("/collections/")
+  );
+}
 
 export function proxy(req: NextRequest): NextResponse {
   const { pathname } = req.nextUrl;
@@ -34,7 +39,7 @@ export function proxy(req: NextRequest): NextResponse {
   const isPhone = device.type === "mobile";
 
   let res: NextResponse;
-  if (isPhone && MOBILE_PATHS.has(pathname)) {
+  if (isPhone && hasMobileTree(pathname)) {
     const url = req.nextUrl.clone();
     url.pathname = pathname === "/" ? "/m" : `/m${pathname}`;
     res = NextResponse.rewrite(url);
