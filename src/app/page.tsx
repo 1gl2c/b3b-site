@@ -22,7 +22,11 @@ export default function Home() {
       {/* ─── HERO: Editorial ─── */}
       <section className="relative overflow-hidden aspect-[4/3] md:aspect-[16/9] lg:aspect-[21/9]">
         {/* Campaign image background */}
-        <HeroImage src="/heroes/camp-06-all.webp" objectPositionX="62%" />
+        <HeroImage
+          src="/heroes/camp-07-rooftop.webp"
+          alt="Three people on a city rooftop at dusk with the skyline behind them: a man seated on a ledge beside a black leather backpack, a man standing with a black holdall slung across his shoulder, and a woman walking past carrying a patterned leather tote"
+          objectPositionX="62%"
+        />
 
         {/* Gradient: dark at bottom-left for text, fading out — the shot has a clean left third, not a flat scrim */}
         <div
