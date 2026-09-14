@@ -20,7 +20,14 @@ export default function MobileProductCard({ product }: { product: Product }) {
         ratio="4 / 5"
         fit="contain"
         sizes="(max-width: 480px) 46vw, 220px"
-      />
+        className={product.soldOut ? "opacity-70" : ""}
+      >
+        {product.soldOut && (
+          <span className="absolute top-3 left-3 rounded-full bg-[#1a1a1a] px-2.5 py-1 text-[9px] uppercase tracking-[0.14em] text-white">
+            Sold Out
+          </span>
+        )}
+      </FramedCard>
       <div className="px-1 pt-3">
         <div className="text-[14px] leading-tight text-[#1a1a1a]">{product.name}</div>
         <div className="text-[14px] text-[#1a1a1a]/55">{formatPrice(product.price)}</div>

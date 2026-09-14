@@ -11,20 +11,22 @@ interface Props {
   price: number | null;
   image: string;
   stripePaymentLink: string | null;
+  soldOut?: boolean;
 }
 
-export default function PDPActions({ slug, code, shopifyVariantId, name, price, image, stripePaymentLink }: Props) {
+export default function PDPActions({ slug, code, shopifyVariantId, name, price, image, stripePaymentLink, soldOut }: Props) {
   const { addToWishlist } = useCart();
   const wishlistItem: WishlistItem = { id: slug, name, price: price ?? 0, image };
 
   return (
     <>
       <p className="text-[10px] tracking-[0.12em] uppercase text-[#5a5a5a] mb-4">
-        Each piece is cut and stitched by Bo — allow 2–3 weeks.
+        {soldOut ? "Currently unavailable — check back soon." : "Each piece is cut and stitched by Bo — allow 2–3 weeks."}
       </p>
       <PurchaseButton
         product={{ shopifyVariantId, code, name, price, image }}
         stripePaymentLink={stripePaymentLink}
+        soldOut={soldOut}
       />
       <button
         onClick={() => addToWishlist(wishlistItem)}

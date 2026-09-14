@@ -13,7 +13,7 @@ import { products } from "@/data/products";
 import { siteValues, reviews } from "@/lib/data";
 
 export default function Home() {
-  const featured = products.slice(0, 4);
+  const featured = products.filter((p) => !p.soldOut).slice(0, 4);
 
   return (
     <div className="bg-[#0e0e0e]">

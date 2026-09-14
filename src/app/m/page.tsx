@@ -12,7 +12,7 @@ import { collectionTabs, reviews } from "@/lib/data";
  * (kept as a single Cormorant line instead).
  */
 export default function MobileHome() {
-  const featured = products.slice(0, 4);
+  const featured = products.filter((p) => !p.soldOut).slice(0, 4);
   const categories = collectionTabs.filter((t) => t.slug !== "");
 
   return (

@@ -10,9 +10,10 @@ interface Props {
   image: string;
   category: string;
   stripePaymentLink: string | null;
+  soldOut?: boolean;
 }
 
-export default function StickyAddToBag({ code, shopifyVariantId, name, price, image, category, stripePaymentLink }: Props) {
+export default function StickyAddToBag({ code, shopifyVariantId, name, price, image, category, stripePaymentLink, soldOut }: Props) {
   return (
     <div className="sticky bottom-0 bg-white border-t border-[#e8e4de] px-10 py-3.5 flex items-center justify-between z-40">
       <div>
@@ -29,6 +30,7 @@ export default function StickyAddToBag({ code, shopifyVariantId, name, price, im
         <PurchaseButton
           product={{ shopifyVariantId, code, name, price, image }}
           stripePaymentLink={stripePaymentLink}
+          soldOut={soldOut}
         />
       </div>
     </div>

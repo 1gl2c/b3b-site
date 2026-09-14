@@ -104,6 +104,7 @@ export default function PDPPageClient({ product, related }: Props) {
             price={product.price}
             image={product.image}
             stripePaymentLink={product.stripePaymentLink}
+            soldOut={product.soldOut}
           />
         </div>
       </div>
@@ -255,6 +256,7 @@ export default function PDPPageClient({ product, related }: Props) {
         image={product.image}
         category={product.category}
         stripePaymentLink={product.stripePaymentLink}
+        soldOut={product.soldOut}
       />
     </div>
   );

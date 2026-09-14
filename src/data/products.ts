@@ -6,6 +6,8 @@ export interface Product {
   collection: string;
   isNew?: boolean;
   price: number | null;
+  /** True when Shopify shows zero inventory. Stays visible/browsable, not purchasable. */
+  soldOut?: boolean;
   stripePaymentLink: string | null;
   /** Shopify Storefront API variant GID. */
   shopifyVariantId: string;
@@ -41,7 +43,7 @@ export const products: Product[] = [
     code: "gym",
     shopifyVariantId: "gid://shopify/ProductVariant/52408970314030",
     collection: "gym-travel",
-    price: 850,
+    price: 800,
     stripePaymentLink: null,
     image: "/products/gym/gym-a1.png",
     images: [
@@ -83,7 +85,7 @@ export const products: Product[] = [
     code: "slb",
     shopifyVariantId: "gid://shopify/ProductVariant/52408970477870",
     collection: "crossbody-shoulder",
-    price: 550,
+    price: 200,
     stripePaymentLink: null,
     image: "/products/slb/slb-a1.png",
     images: [
@@ -119,7 +121,7 @@ export const products: Product[] = [
     code: "tot",
     shopifyVariantId: "gid://shopify/ProductVariant/52408970248494",
     collection: "totes",
-    price: 1200,
+    price: 500,
     stripePaymentLink: null,
     image: "/products/tot/tot-a1.png",
     images: [
@@ -156,6 +158,7 @@ export const products: Product[] = [
     shopifyVariantId: "gid://shopify/ProductVariant/52408970510638",
     collection: "bumbags",
     price: 450,
+    soldOut: true,
     stripePaymentLink: null,
     image: "/products/bum/bum-a1.png",
     images: [
@@ -194,6 +197,7 @@ export const products: Product[] = [
     collection: "totes",
     isNew: true,
     price: 950,
+    soldOut: true,
     stripePaymentLink: null,
     image: "/products/cyl/cyl-a1.png",
     images: [
@@ -231,6 +235,7 @@ export const products: Product[] = [
     collection: "backpacks",
     isNew: true,
     price: 750,
+    soldOut: true,
     stripePaymentLink: null,
     image: "/products/flb/flb-a1.png",
     images: [
@@ -267,7 +272,7 @@ export const products: Product[] = [
     code: "dcb",
     shopifyVariantId: "gid://shopify/ProductVariant/52408970379566",
     collection: "backpacks",
-    price: 700,
+    price: 500,
     stripePaymentLink: null,
     image: "/products/dcb/dcb-a1.png",
     images: [
@@ -306,7 +311,7 @@ export const products: Product[] = [
     code: "dcr",
     shopifyVariantId: "gid://shopify/ProductVariant/52408970412334",
     collection: "backpacks",
-    price: 700,
+    price: 500,
     stripePaymentLink: null,
     image: "/products/dcr/dcr-a1.png",
     images: [
@@ -339,7 +344,7 @@ export const products: Product[] = [
     code: "cbs",
     shopifyVariantId: "gid://shopify/ProductVariant/52408970445102",
     collection: "crossbody-shoulder",
-    price: 600,
+    price: 300,
     stripePaymentLink: null,
     image: "/products/cbs/cbs-a1.png",
     images: [
