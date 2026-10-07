@@ -8,17 +8,19 @@ import type { NextRequest } from "next/server";
  * flash of desktop layout before hydration.
  *
  * `hasMobileTree` is the allow-list of pages that actually have a `/m`
- * implementation. It grows one stage at a time:
- *   (a) "/"
- *   (b) + "/collections" and "/collections/*"   ← this stage
- *   (c) + "/products/:slug"
+ * implementation.
  *
- * v2 seam (known issue): "/about" and "/heritage" are deliberately absent —
- * phones get the desktop editorial pages until mobile versions are designed.
+ * The root is deliberately NOT on it any more. b3b.ai now lands on the B3B
+ * Vault, which is one responsive page that already handles phones, so the
+ * root must fall through to the rewrite in next.config.ts instead of being
+ * branched to the old `/m` app shell. Put "/" back on the list to restore
+ * the old phone homepage.
+ *
+ * "/about" and "/heritage" are absent for the original reason: phones get
+ * the desktop editorial pages until mobile versions are designed.
  */
 function hasMobileTree(pathname: string): boolean {
   return (
-    pathname === "/" ||
     pathname === "/collections" ||
     pathname.startsWith("/collections/")
   );
