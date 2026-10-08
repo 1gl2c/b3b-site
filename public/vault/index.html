@@ -78,6 +78,26 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .chrome{position:fixed;z-index:3;pointer-events:none}
 .chrome > *{pointer-events:auto}
 
+/* `.chrome > *` turns pointer-events back ON for the children of every chrome
+   panel. That beats a `pointer-events:none` set on the panel itself, because a
+   child with `auto` is hit-tested even when its parent is `none`. So a panel
+   faded to opacity 0 went on catching taps: the hidden review controls sat over
+   the filter rail and ate every tap on a phone, which is why tapping a category
+   changed the atmosphere instead of filtering. Anything faded out is inert,
+   children included. */
+body.cover #rail *,
+body.cover #beta *,
+body:not(.cover) #cover *,
+body:not(.cover) #cover-mark *,
+body.scene #cover-mark *,
+body.scene #cover *,
+body.nodev #atmos *,
+body.nodev #intro-ctl *,
+body.open #atmos *,
+body.open #intro-ctl *,
+body.open #caption *,
+body.open #rail *{pointer-events:none}
+
 #top{
   top:0;left:0;right:0;display:flex;align-items:flex-start;gap:20px;
   padding:0 clamp(16px,3.4vw,40px);
@@ -482,7 +502,18 @@ body.light #d-gal-img.plate{mix-blend-mode:multiply}
     transform:translateY(26px);padding-top:clamp(26px,7vw,40px);
   }
   #top{flex-wrap:wrap}
-  #rail{order:3;width:100%;justify-content:flex-start;padding-top:12px}
+  /* Every filter stays on screen, so nothing hides off the side of a phone.
+     What changes is the size of the target: a 25px pill is a cursor's target,
+     not a thumb's, and missing one used to land the tap on the canvas. These
+     are 38px tall and sit tight enough to still read as one group. */
+  #rail{
+    order:3;width:100%;justify-content:flex-start;padding-top:6px;
+    gap:0 2px;
+  }
+  #rail button{font-size:10px;padding:11px 10px;letter-spacing:.16em}
+  #rail button.story{
+    margin-left:6px;padding-left:12px;border-left-color:var(--hair);
+  }
   #beta{margin-left:auto}
   #d-name{font-size:clamp(28px,8vw,40px)}
 }
@@ -697,21 +728,6 @@ body.lb{overflow:hidden}
   *{transition-duration:.01ms!important}
 }
 /* ---------- environments ---------- */
-#cover-modes{
-  display:flex;gap:8px;justify-content:center;margin:0;
-  opacity:0;transform:translateY(6px);transition:opacity .5s ease,transform .5s ease;
-  pointer-events:none;
-}
-body.cover #cover-modes{opacity:1;transform:none;pointer-events:auto;transition-delay:.25s}
-#cover-modes button{
-  font:inherit;font-size:9px;letter-spacing:.20em;text-transform:uppercase;
-  color:var(--stone);background:transparent;border:1px solid var(--hair);
-  border-radius:999px;padding:6px 14px;cursor:pointer;
-  transition:color .3s ease,border-color .3s ease,background .3s ease;
-}
-#cover-modes button:hover{color:var(--dune);border-color:var(--dune)}
-#cover-modes button[aria-pressed="true"]{color:var(--ink);border-color:currentColor}
-body.light #cover-modes button[aria-pressed="true"]{color:#171310}
 
 #spots{position:fixed;inset:0;z-index:7;pointer-events:none}
 #spots i{
@@ -840,11 +856,7 @@ body.scene #cover{opacity:0!important;pointer-events:none!important}
 </div>
 
 <div id="cover" class="chrome">
-  <p class="cue" id="cover-cue">Click a piece to open it in the vault</p>
-  <div id="cover-modes" role="group" aria-label="What the cover shows">
-    <button type="button" data-m="pieces" aria-pressed="true">Pieces</button>
-    <button type="button" data-m="scenes" aria-pressed="false">Scenes</button>
-  </div>
+  <p class="cue" id="cover-cue">Click a room to step inside and pick up the bag</p>
 </div>
 
 <div id="spots" aria-hidden="true"></div>
@@ -1082,9 +1094,11 @@ TABS.forEach(function(t){
   b.type = "button";
   b.innerHTML = t.label;
   b.setAttribute("aria-pressed", t.slug === activeTab ? "true" : "false");
-  // the last one is a door, not a filter
-  b.addEventListener("click", function(){ if (t.story) openAbout(); else setTab(t.slug); });
+  // The handlers live in boot(), because setTab and openAbout are declared
+  // there and are not in scope out here. Binding them at this point threw a
+  // ReferenceError on every tap and the filters silently did nothing.
   b.dataset.slug = t.slug;
+  if (t.story) b.dataset.story = "1";
   if (t.story) b.className = "story";
   rail.appendChild(b);
 });
@@ -1827,7 +1841,7 @@ var envOrbs = SCENES.map(function(sc, i){
   return {mesh:mesh, mat:mat, sc:sc, i:i, hover:0, thover:0};
 });
 
-var coverMode = "pieces";      // or "scenes"
+var coverMode = "scenes";      // the cover is the rooms; the pieces live in the vault
 var envT = 0;                  // 0 pieces on the cover, 1 environments
 var envHover = -1;
 var coverHot = false;
@@ -1920,6 +1934,14 @@ function setTab(slug){
   buildTicks();
   syncCaption();
 }
+
+/* The filter rail is built before boot() so the page has chrome while three.js
+   loads, but its behaviour belongs here, where setTab and openAbout exist. */
+Array.prototype.forEach.call(rail.children, function(b){
+  b.addEventListener("click", function(){
+    if (b.dataset.story) openAbout(); else setTab(b.dataset.slug);
+  });
+});
 
 function buildTicks(){
   var t = $("ticks"); t.innerHTML = "";
@@ -2868,16 +2890,12 @@ function toPiece(code){
   setTimeout(function(){ openPiece(slot); }, 440);
 }
 
+/* The cover shows the rooms. The Pieces/Scenes toggle that used to sit here is
+   gone: the pieces have the whole vault behind the mark, so the cover does not
+   need to offer them as well. This still takes a mode so the rooms can be
+   primed on the way in. */
 function setCoverMode(m){
-  if (m === coverMode) return;
   coverMode = m;
-  Array.prototype.forEach.call($("cover-modes").children, function(b){
-    b.setAttribute("aria-pressed", b.dataset.m === m ? "true" : "false");
-  });
-  var cue = $("cover-cue");
-  if (cue) cue.textContent = m === "scenes"
-    ? "Click a room to step inside and pick up the bag"
-    : "Click a piece to open it in the vault";
   // Each room is a 4096x2048 still plus a clip. Building all four at once is
   // fine on a desktop and is how the first room opens instantly; on a phone it
   // is a lot of texture memory for rooms you may never open, so there they are
@@ -2892,9 +2910,7 @@ function setCoverMode(m){
     });
   }
 }
-Array.prototype.forEach.call($("cover-modes").children, function(b){
-  b.addEventListener("click", function(){ setCoverMode(b.dataset.m); });
-});
+setCoverMode("scenes");
 if (window.matchMedia && window.matchMedia("(pointer:coarse)").matches){
   $("sc-how").textContent = "Swipe to turn the room \u00b7 pinch to zoom";
 }
