@@ -1065,7 +1065,8 @@ var PRODUCTS = [
    specs:["Full-grain leather shell","Suede interior lining","Magnetic snap and drawstring closure","Detachable crossbody strap","Antique gold metal hardware","Made in Los Angeles, imported hides"],model:true},
   {code:"cap",name:"Cap",cat:"Accessory",col:"accessories",price:35,vid:"52408970543406",
    desc:"The B3B cap. Premium construction, debossed logo, built to the same standard as every piece in the collection. An everyday essential from a craftsman who does not do shortcuts.",
-   specs:["Premium construction","Debossed B3B logo","Adjustable fit","One size"],model:true},
+   specs:["Premium construction","Debossed B3B logo","Adjustable fit","One size"],model:true,
+   madeLA:false},
   // the last orb in the line is not a piece: it is the house behind them
   {code:"about",name:"Who We Are",cat:"The House",col:"__about",price:0,about:true,
    desc:"Thirty five years of pattern and hide, and whose hands they belong to.",
@@ -1990,7 +1991,9 @@ function openPiece(slot){
   $("d-price").innerHTML = "$" + p.price +
     (p.sold ? "<span class='status sold'>Sold out</span>"
             : "<span class='status ready'>In stock &middot; ships now</span>") +
-    "<span class='status origin'>Made in Los Angeles</span>";
+    // The bags are cut and sewn here. Anything that is not carries no origin
+    // line rather than a line that is not true: set madeLA:false on the piece.
+    (p.madeLA === false ? "" : "<span class='status origin'>Made in Los Angeles</span>");
   $("d-desc").textContent = p.desc;
   var ul = $("d-specs"); ul.innerHTML = "";
   p.specs.forEach(function(s){ var li = document.createElement("li"); li.textContent = s; ul.appendChild(li); });
