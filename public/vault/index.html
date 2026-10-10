@@ -2974,8 +2974,9 @@ function pickEnv(clientX, clientY){
 var glassFade = 0, openAt = 0;
 var glassScaleTarget;   // set by resize(), which runs before the first frame
 var glassY = 1.15;
-var markTurn = 0, markLean = 0;
-var MARK_SWING = 0.58;  // the whole rock, end to end, in radians
+var markTurn = 0, markLean = 0, markSpin = 0;
+var MARK_SWING = 0.58;   // the lean the line adds, end to end, in radians
+var MARK_REVS  = 48;     // seconds for one full revolution
 
 /* ------------------------------------------------------------------
    Two states in one scene. The cover has the pieces in orbit around the
@@ -3530,16 +3531,23 @@ function frame(){
   // The mark turns all the way round rather than rocking. It is an extruded
   // solid, so every revolution carries it through edge-on and back, which is
   // most of what makes it read as an object rather than a logo.
-  /* The mark holds still on the cover. Inside the vault it is the thing you
-     are orbiting: moving along the line leans it, the first piece and the last
-     sitting about seventeen degrees either side of square on. It never turns
-     far enough to show its back, which reads as a mirrored logo, or its edge,
-     which reads as a stack of slabs. Nothing turns for its own sake. */
+  /* The mark is never still. It revolves once every forty-eight seconds, on
+     the cover and in the vault alike, which is slow enough that you notice it
+     has moved rather than watch it moving. The old glass could not do this:
+     its back was a mirrored logo and its edge was a stack of slabs. This one
+     is a solid, so the back is the letterform in reverse and the edge is real
+     thickness, and carrying through both is the point. On top of the revolve,
+     moving along the line still leans it, and so does the pointer. */
   var mid = (visible.length - 1) * 0.5;
   var span = Math.max(1, visible.length - 1);
+  // off the clock, not off dt. dt is capped at 0.05s so a frame hitch cannot
+  // throw the damping, which means on a phone that drops below twenty frames
+  // the revolve would quietly run slow. Reading the clock keeps forty-eight
+  // seconds at forty-eight seconds on any hardware.
+  markSpin = reduced ? 0 : (performance.now() / 1000) * (Math.PI * 2 / MARK_REVS) % (Math.PI * 2);
   markTurn = damp(markTurn, reduced ? 0 : (pos_ - mid) / span * MARK_SWING, 2.6, dt);
   markLean = damp(markLean, px * 0.26, 1.8, dt);
-  glassGroup.rotation.y = markTurn * easeInOutCubic(enterT) + markLean;
+  glassGroup.rotation.y = markSpin + markTurn * easeInOutCubic(enterT) + markLean;
   glassGroup.rotation.x = damp(glassGroup.rotation.x, -py * 0.17 + (reduced ? 0 : Math.sin(t * 0.13) * 0.045), 1.8, dt);
   // the focused piece sits dead centre, so the mark rides above the line
   // rather than behind it, where the orb cut it in half
